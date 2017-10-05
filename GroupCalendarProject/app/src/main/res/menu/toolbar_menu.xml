@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_Calendars"
+        android:orderInCategory="100"
+        android:title="Calendars"
+        android:visible="true"
+        app:showAsAction="never" />
+
+       <item
+           android:id="@+id/action_Friends"
+           android:orderInCategory="100"
+           android:title="Friends"
+           app:showAsAction="never" />
+
+       <item
+           android:id="@+id/action_Themes"
+           android:orderInCategory="100"
+           android:title="Themes"
+           app:showAsAction="never" />
+
+        <item
+    android:id="@+id/action_settings"
+    android:orderInCategory="100"
+    android:title="@string/action_settings"
+    app:showAsAction="never" />
+</menu>

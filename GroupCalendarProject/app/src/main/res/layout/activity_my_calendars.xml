@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.huliaaaa.groupcalendarproject.MyCalendars">
+
+
+
+    <ListView
+        android:id="@+id/calendarTitleList"
+        android:layout_width="161dp"
+        android:layout_height="268dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="61dp"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="My Calendars"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar Creation"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:layout_below="@+id/calendarTitleList"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/calendartitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:id="@+id/publicBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/calendartitle"
+        android:layout_below="@+id/calendartitle"
+        android:layout_marginTop="11dp"
+        android:text="Public" />
+
+    <RadioButton
+        android:id="@+id/privateBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/publicBTN"
+        android:layout_toEndOf="@+id/publicBTN"
+        android:text="Private" />
+
+    <Button
+        android:id="@+id/createCalendarBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        android:layout_below="@+id/calendartitle"
+        android:layout_toEndOf="@+id/textView2" />
+
+</android.widget.RelativeLayout>
