@@ -8,15 +8,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
 
+    private TextView tvEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar4);
       //  setSupportActionBar(toolbar);
+        //tvEmail = (TextView) findViewById(R.id.txtEmail);
+       // tvEmail.setText(getIntent().getExtras().getString("Email"));
     }
 
 

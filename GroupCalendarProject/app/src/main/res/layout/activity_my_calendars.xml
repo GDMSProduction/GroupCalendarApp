@@ -56,7 +56,8 @@
         android:layout_alignStart="@+id/calendartitle"
         android:layout_below="@+id/calendartitle"
         android:layout_marginTop="11dp"
-        android:text="Public" />
+        android:text="Public"
+        android:onClick="clicka2"/>
 
     <RadioButton
         android:id="@+id/privateBTN"
@@ -64,14 +65,17 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/publicBTN"
         android:layout_toEndOf="@+id/publicBTN"
-        android:text="Private" />
+        android:text="Private"
+        android:onClick="clicka"/>
 
     <Button
         android:id="@+id/createCalendarBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create"
-        android:layout_below="@+id/calendartitle"
-        android:layout_toEndOf="@+id/textView2" />
+        android:layout_alignBaseline="@+id/privateBTN"
+        android:layout_alignBottom="@+id/privateBTN"
+        android:layout_toEndOf="@+id/textView2"
+        android:onClick="onBtnClick"/>
 
 </android.widget.RelativeLayout>

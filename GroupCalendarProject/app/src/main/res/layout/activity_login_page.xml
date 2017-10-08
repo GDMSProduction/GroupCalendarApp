@@ -7,7 +7,7 @@
     tools:context="com.example.huliaaaa.groupcalendarproject.LoginPage">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtEmailLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,11 +18,11 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignStart="@+id/txtEmailLogin"
+        android:layout_below="@+id/txtEmailLogin"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="Password"
@@ -32,27 +32,27 @@
         android:id="@+id/loginBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="29dp"
+        android:layout_alignStart="@+id/txtPwd"
+        android:layout_below="@+id/txtPwd"
+        android:onClick="btnUserLogin_Click"
         android:text="Login" />
 
     <Button
         android:id="@+id/registerBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loginBTN"
-        android:layout_alignBottom="@+id/loginBTN"
-        android:layout_alignEnd="@+id/editText2"
+        android:layout_alignEnd="@+id/txtPwd"
+        android:layout_below="@+id/txtPwd"
+        android:onClick="btnRegistrationUser_Click"
         android:text="Register" />
 
     <Button
         android:id="@+id/tempBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginBTN"
-        android:layout_centerHorizontal="true"
         android:onClick="NextPage"
-        android:layout_marginTop="56dp"
-        android:text="Temporary" />
+        android:layout_marginTop="116dp"
+        android:text="Temporary"
+        android:layout_below="@+id/loginBTN"
+        android:layout_centerHorizontal="true" />
 </android.widget.RelativeLayout>

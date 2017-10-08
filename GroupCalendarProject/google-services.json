@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "426643918483",
+    "firebase_url": "https://group-calendar-e1504.firebaseio.com",
+    "project_id": "group-calendar-e1504",
+    "storage_bucket": "group-calendar-e1504.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426643918483:android:abdfdab11557c472",
+        "android_client_info": {
+          "package_name": "com.example.huliaaaa.groupcalendarproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426643918483-cldu8rlmub788i6orkso3egclpvvchrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHHGkLIFmYhYBrTlwE9QOGsqpJA3Xwle4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
