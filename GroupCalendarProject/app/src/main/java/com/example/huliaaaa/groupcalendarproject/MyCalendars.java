@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ public class MyCalendars extends AppCompatActivity {
         bt = (Button) findViewById(R.id.createCalendarBTN);
         rb1 = (RadioButton) findViewById(R.id.publicBTN);
         rb2 = (RadioButton) findViewById(R.id.privateBTN);
+        rb1.setChecked(true);
 
 
         arrayList = new ArrayList<String>();
@@ -66,12 +68,19 @@ public class MyCalendars extends AppCompatActivity {
          bt.setOnClickListener(new View.OnClickListener(){
              @Override
              public void onClick(View v){
-                 if (rb1.isChecked())
+                 String titl = editText.getText().toString();
+
+                 if (TextUtils.isEmpty(titl))
+                 {
+                     editText.setError("Field Required");
+                 }
+                 else if (rb1.isChecked())
                  {
                      String result = editText.getText().toString() + " (Public)";
                      arrayList.add(result);
                      adapter.notifyDataSetChanged();
                      rb2.setChecked(false);
+                     editText.setText("");
                  }
 
                  else if (rb2.isChecked())
@@ -80,15 +89,22 @@ public class MyCalendars extends AppCompatActivity {
                      arrayList.add(result);
                      adapter.notifyDataSetChanged();
                      rb1.setChecked(false);
+                     editText.setText("");
                  }
-                 else {
+
+                 else
+                 {
                      String result = editText.getText().toString();
                      arrayList.add(result);
                      adapter.notifyDataSetChanged();
+                     editText.setText("");
+                     editText.setError(null);
+
                  }
-                 rb1.setChecked(false);
+                 rb1.setChecked(true);
                  rb2.setChecked(false);
-                 editText.setText("");
+
+
              }
          });
      }

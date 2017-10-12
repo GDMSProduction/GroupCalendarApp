@@ -57,6 +57,11 @@ public class CalendarView extends AppCompatActivity
     TextView tv1;
     TextView tv2;
     Date nd;
+    TextView ex1;
+    TextView ex2;
+    Button exit;
+    long m = System.currentTimeMillis();
+    Date p = new Date(m);
 
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
@@ -85,6 +90,9 @@ public class CalendarView extends AppCompatActivity
         editBtn = (Button) findViewById(R.id.editBtn);
         tv1 = (TextView) findViewById(R.id.textView10);
         tv2 = (TextView) findViewById(R.id.textView14);
+        ex1 = (TextView) findViewById(R.id.dateExample);
+        ex2 = (TextView) findViewById(R.id.dateExample2);
+        exit = (Button) findViewById(R.id.exit);
 
 
 
@@ -109,7 +117,7 @@ public class CalendarView extends AppCompatActivity
                         if (data.equals(other))
                         {
                             nd = new Date(oe.getTimeInMillis());
-                           DateFormat  df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+                           DateFormat  df = new SimpleDateFormat("MM/dd/yy    HH:mm");
 
                             //formatted value of current Date
                             df.format(nd);
@@ -124,7 +132,8 @@ public class CalendarView extends AppCompatActivity
                             eventDes.setVisibility(View.VISIBLE);
                             tv1.setVisibility(View.VISIBLE);
                             tv2.setVisibility(View.VISIBLE);
-                            listView1.setVisibility(View.VISIBLE);
+                            exit.setVisibility(View.VISIBLE);
+                            listView1.setVisibility(View.INVISIBLE);
                             eventTitle.setText(oe.getData().toString());
                             eventDes.setText(oe.getDescription().toString());
                             eventDT.setText(df.format(nd));
@@ -140,12 +149,8 @@ public class CalendarView extends AppCompatActivity
             }
         });
 
-        //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-       // Date date = new Date("11/21/1987 16:00:00"); // some mock date
-        //long milliseconds = date.getTime();
-        Event ev1 = new Event(Color.RED, 1477040400000L, "Teachers' Professional Day");
-        compactCalendar.addEvent(ev1);
+
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener()
         {
@@ -153,6 +158,7 @@ public class CalendarView extends AppCompatActivity
             @Override
             public void onDayClick(Date dateClicked)
             {
+                arrayList1.clear();
                 Context context = getApplicationContext();
                 events = compactCalendar.getEvents(dateClicked);
                 if (events.size() > 0)
@@ -163,6 +169,7 @@ public class CalendarView extends AppCompatActivity
                         arrayList1.add(events.get(i).getData().toString());
                         adapter1.notifyDataSetChanged();
                     }
+                    listView1.setVisibility(View.VISIBLE);
                 }
 
                  // if (dateClicked.getDate() == events[i].getTimeInMillis() && events[i] != null) {
@@ -171,10 +178,9 @@ public class CalendarView extends AppCompatActivity
 
                  //     Toast.makeText(context, "lol", Toast.LENGTH_SHORT).show();
                  // }
-                    d.setText(dateClicked.toString());
+                   // d.setText(dateClicked.toString());
 
                // d.requestFocus();
-                    listView1.setVisibility(View.VISIBLE);
 
 
 
@@ -188,6 +194,7 @@ public class CalendarView extends AppCompatActivity
         });
         onBtnClick2();
         onBtnClick3();
+        onExitClick();
     }
 
     public void onBtnClick2()
@@ -199,9 +206,13 @@ public class CalendarView extends AppCompatActivity
             {
                 description.setVisibility(View.VISIBLE);
                 d.setVisibility(View.VISIBLE);
+                listView1.setVisibility(View.INVISIBLE);
 
                 title.setVisibility(View.VISIBLE);
                 b3.setVisibility(View.VISIBLE);
+
+                ex1.setVisibility(View.VISIBLE);
+                ex2.setVisibility(View.VISIBLE);
 
                 title.requestFocus();
 
@@ -209,7 +220,28 @@ public class CalendarView extends AppCompatActivity
             }
         });
     }
+public void onExitClick()
+{
+    exit.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            compactCalendar.setVisibility(View.VISIBLE);
+            b2.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.INVISIBLE);
+            eventTitle.setVisibility(View.INVISIBLE);
+            eventDT.setVisibility(View.INVISIBLE);
+            eventDes.setVisibility(View.INVISIBLE);
+            tv1.setVisibility(View.INVISIBLE);
+            tv2.setVisibility(View.INVISIBLE);
+            exit.setVisibility(View.INVISIBLE);
+            listView1.setVisibility(View.INVISIBLE);
+            compactCalendar.setCurrentDate(p);
 
+
+        }
+    });
+}
     public void onBtnClick3()
     {
         b3.setOnClickListener(new View.OnClickListener()
@@ -218,14 +250,11 @@ public class CalendarView extends AppCompatActivity
             public void onClick(View v)
             {
 
-              String q = d.getText().toString();
-              Date date = new Date(q);
-              long milliseconds = date.getTime();
 
-                long m = System.currentTimeMillis();
-                Date p = new Date(m);
                 String des = description.getText().toString();
-                View focusView = null;
+               // View focusView = null;
+                String tit = title.getText().toString();
+                String dat = d.getText().toString();
 
 
                 if (TextUtils.isEmpty(des))
@@ -233,8 +262,22 @@ public class CalendarView extends AppCompatActivity
                     description.setError(getString(R.string.error_field_required));
 
                 }
+                else if (TextUtils.isEmpty(tit))
+                {
+                    title.setError(getString(R.string.error_field_required));
+                }
+                else if (TextUtils.isEmpty(dat))
+                {
+                    d.setError(getString(R.string.error_field_required));
+                }
                 else
                 {
+                    String q = d.getText().toString();
+                    Date date = new Date(q);
+                    long milliseconds = date.getTime();
+
+
+
                     ourEvent = new OurEvent(Color.RED, milliseconds, title.getText().toString(), description.getText().toString());
                     ourEventsArray.add(ourEvent);
                     Event event = new Event(Color.RED, milliseconds,title.getText().toString() );
@@ -243,11 +286,13 @@ public class CalendarView extends AppCompatActivity
                     d.setVisibility(View.INVISIBLE);
                     title.setVisibility(View.INVISIBLE);
                     b3.setVisibility(View.INVISIBLE);
+                    ex1.setVisibility(View.INVISIBLE);
+                    ex2.setVisibility(View.INVISIBLE);
 
 
-                    description.setText(" ");
-                    d.setText(" ");
-                    title.setText(" ");
+                    description.setText("");
+                    d.setText("");
+                    title.setText("");
                     compactCalendar.setCurrentDate(p);
                 }
 
