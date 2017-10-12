@@ -1,19 +1,78 @@
 package com.example.huliaaaa.groupcalendarproject;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsPage extends AppCompatActivity {
 
+
+    FirebaseAuth firebaseAuth1;
+    private FirebaseAuth.AuthStateListener authStateListener1;
+    Button signOut;
+   // private static final String TAG = "LoginPage";
+    FirebaseUser user;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_page);
+        signOut = (Button) findViewById(R.id.signOutBTN);
+        firebaseAuth1 = FirebaseAuth.getInstance();
+        authStateListener1 = new FirebaseAuth.AuthStateListener()
+        {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                 user = firebaseAuth.getCurrentUser();
+            }
+        };
+
+
+        signOut.setOnClickListener(new View.OnClickListener()
+        {
+           @Override
+         //   public void onClick(View v) {
+         //       if (v.getId() == R.id.signOutBTN) {
+         //           firebaseAuth1.getInstance()
+         //                   .signOut()
+         //                   .addOnCompleteListener(new OnCompleteListener<Void>() {
+         //                       public void onComplete(@NonNull Task<Void> task) {
+         //                           // user is now signed out
+         //                           startActivity(new Intent(SettingsPage.this, LoginPage.class));
+         //                           finish();
+         //                       }
+         //                   });
+         //       }
+         //   }
+
+            public void onClick(View v)
+            {
+                firebaseAuth1.getInstance().signOut();
+                Toast.makeText(SettingsPage.this, "Signed Out",
+                        Toast.LENGTH_SHORT).show();
+
+                Intent j = new Intent(SettingsPage.this, LoginPage.class);
+                startActivity(j);
+               // Log.d(TAG, "onAuthStateChanged:signed_out");
+            }
+        });
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar6);
        // setSupportActionBar(toolbar);
     }

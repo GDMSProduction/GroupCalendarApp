@@ -7,5 +7,11 @@
     tools:context="com.example.huliaaaa.groupcalendarproject.SettingsPage">
 
 
-
+    <Button
+        android:id="@+id/signOutBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign out"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="351dp" />
 </android.support.constraint.ConstraintLayout>

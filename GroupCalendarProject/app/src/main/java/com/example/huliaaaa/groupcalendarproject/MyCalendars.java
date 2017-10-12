@@ -1,5 +1,6 @@
 package com.example.huliaaaa.groupcalendarproject;
 
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,14 @@ public class MyCalendars extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(MyCalendars.this, android.R.layout.simple_list_item_1,
                 arrayList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MyCalendars.this, CalendarView.class);
+                startActivity(intent);
+            }
+        });
 
         onBtnClick();
         clicka();

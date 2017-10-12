@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Set;
+
 public class MainMenu extends AppCompatActivity {
 
     private TextView tvEmail;
@@ -69,6 +71,21 @@ public class MainMenu extends AppCompatActivity {
     public void NextPage(View V)
     {
         Intent nextpage = new Intent(MainMenu.this, CalendarPage.class);
+        startActivity(nextpage);
+    }
+    public void NextPageFriends(View V)
+    {
+        Intent nextpage = new Intent(MainMenu.this, FriendsPage.class);
+        startActivity(nextpage);
+    }
+    public void NextPageThemes(View V)
+    {
+        Intent nextpage = new Intent(MainMenu.this, ThemesPage.class);
+        startActivity(nextpage);
+    }
+    public void NextPageSetttings(View V)
+    {
+        Intent nextpage = new Intent(MainMenu.this, SettingsPage.class);
         startActivity(nextpage);
     }
 }
