@@ -59,31 +59,11 @@
         android:id="@+id/eventList"
         android:layout_width="250dp"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/createEvent"
         android:layout_below="@+id/compactcalendar_view"
-        android:layout_marginTop="13dp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/dateExample"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/dateExample2"
-        android:layout_below="@+id/titleTXT"
-        android:layout_toEndOf="@+id/titleTXT"
-        android:text="Ex. May 26 2017"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/dateExample2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/dateTXT"
-        android:layout_alignBottom="@+id/dateTXT"
-        android:layout_toEndOf="@+id/dateTXT"
-        android:text="4:30 PM"
-        android:visibility="invisible" />
+        android:layout_alignEnd="@+id/titlebox" />
 
     <EditText
         android:id="@+id/descriptionTXT"
@@ -93,31 +73,8 @@
         android:hint="Event Description"
         android:inputType="textMultiLine"
         android:visibility="invisible"
-        android:layout_below="@+id/dateTXT"
-        android:layout_alignEnd="@+id/createEvent" />
-
-    <Button
-        android:id="@+id/addBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onBtnClick3"
-        android:text="Add"
-        android:visibility="invisible"
-        android:layout_below="@+id/descriptionTXT"
-        android:layout_alignStart="@+id/compactcalendar_view"
-        android:layout_marginStart="13dp" />
-
-    <EditText
-        android:id="@+id/dateTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/titleTXT"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/createEvent"
-        android:layout_toStartOf="@+id/descriptionTXT"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:visibility="invisible" />
+        android:layout_below="@+id/datePicker"
+        android:layout_toEndOf="@+id/yesBTN" />
 
     <TextView
         android:id="@+id/titlebox"
@@ -179,12 +136,11 @@
         android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/createEvent"
-        android:layout_below="@+id/descriptionTXT"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="11dp"
         android:text="Edit"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_above="@+id/descriptionTXT"
+        android:layout_alignEnd="@+id/datePicker"
+        android:layout_marginEnd="11dp" />
 
     <Button
         android:id="@+id/exit"
@@ -195,5 +151,107 @@
         android:text="X"
         android:visibility="invisible"
         android:onClick="onExitClick"/>
+
+    <Button
+        android:id="@+id/deleteBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:visibility="invisible"
+        android:layout_below="@+id/editBtn"
+        android:layout_alignStart="@+id/editBtn" />
+
+    <TextView
+        android:id="@+id/confirmTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView10"
+        android:layout_toStartOf="@+id/createEvent"
+        android:text="Are you sure?"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/yesBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/datetimeBox"
+        android:layout_alignStart="@+id/confirmTXT"
+        android:text="Yes"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/noBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/datetimeBox"
+        android:layout_alignEnd="@+id/eventList"
+        android:text="No"
+        android:visibility="invisible" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/titlebox"
+        android:visibility="invisible" />
+
+    <RadioButton
+        android:id="@+id/pickDateBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Date"
+        android:visibility="invisible"
+        android:layout_below="@+id/createEvent"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:id="@+id/pickTimeBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pickDateBTN"
+        android:layout_below="@+id/pickDateBTN"
+        android:text="Pick Time"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/okBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:visibility="invisible"
+        android:layout_below="@+id/pickTimeBTN"
+        android:layout_alignStart="@+id/datePicker"
+        android:layout_marginTop="18dp" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/addBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:onClick="onBtnClick3"
+        android:text="Add"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/okBTN"
+        android:layout_alignBottom="@+id/okBTN"
+        android:layout_alignStart="@+id/okBTN" />
+
+    <Button
+        android:id="@+id/ok2BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/okBTN"
+        android:layout_alignBottom="@+id/okBTN"
+        android:layout_alignStart="@+id/okBTN" />
 
 </android.widget.RelativeLayout>
