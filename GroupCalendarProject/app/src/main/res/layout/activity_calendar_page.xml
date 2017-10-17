@@ -26,6 +26,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/myCalendarsBTN"
+        android:onClick="NextPage2"
         android:text="Group Calendars" />
 
     <CalendarView

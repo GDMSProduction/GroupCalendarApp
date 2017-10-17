@@ -32,28 +32,14 @@
         android:id="@+id/createEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/titleTXT"
-        android:layout_alignBottom="@+id/titleTXT"
-        android:layout_alignEnd="@+id/compactcalendar_view"
         android:onClick="onBTNClick2"
         android:text="Create Event"
         android:visibility="visible"
         tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="255dp" />
-
-    <EditText
-        android:id="@+id/titleTXT"
-        android:layout_width="123dp"
-        android:layout_height="46dp"
-        android:layout_alignStart="@+id/timeTXT"
+        tools:layout_editor_absoluteY="255dp"
         android:layout_below="@+id/compactcalendar_view"
-        android:layout_marginTop="43dp"
-        android:ems="10"
-        android:hint="Title"
-        android:inputType="none"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="265dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="43dp" />
 
     <ListView
         android:id="@+id/eventList"
@@ -61,20 +47,8 @@
         android:layout_height="match_parent"
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/createEvent"
-        android:layout_below="@+id/compactcalendar_view"
-        android:layout_alignEnd="@+id/titlebox" />
-
-    <EditText
-        android:id="@+id/descriptionTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Event Description"
-        android:inputType="textMultiLine"
-        android:visibility="invisible"
-        android:layout_below="@+id/datePicker"
-        android:layout_toEndOf="@+id/yesBTN" />
+        android:layout_toStartOf="@+id/datetimeBox"
+        android:layout_below="@+id/compactcalendar_view" />
 
     <TextView
         android:id="@+id/titlebox"
@@ -85,16 +59,6 @@
         android:layout_toEndOf="@+id/textView14"
         android:text="TextView"
         android:textSize="25sp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/compactcalendar_view"
-        android:layout_alignTop="@+id/datetimeBox"
-        android:text="Date/Time:"
-        android:textSize="23sp"
         android:visibility="invisible" />
 
     <EditText
@@ -111,26 +75,15 @@
         android:visibility="invisible"
         tools:clickable="false" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/titleTXT"
-        android:layout_alignStart="@+id/compactcalendar_view"
-        android:layout_marginBottom="31dp"
-        android:text="Description:"
-        android:textSize="23sp"
-        android:visibility="invisible" />
-
     <EditText
         android:id="@+id/descriptionBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/compactcalendar_view"
-        android:layout_alignTop="@+id/textView14"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/editBtn" />
 
     <Button
         android:id="@+id/editBtn"
@@ -146,11 +99,11 @@
         android:id="@+id/exit"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/compactcalendar_view"
-        android:layout_alignParentTop="true"
         android:text="X"
         android:visibility="invisible"
-        android:onClick="onExitClick"/>
+        android:onClick="onExitClick"
+        android:layout_alignBottom="@+id/datetimeBox"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/deleteBTN"
@@ -165,93 +118,28 @@
         android:id="@+id/confirmTXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView10"
-        android:layout_toStartOf="@+id/createEvent"
         android:text="Are you sure?"
         android:textSize="24sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_above="@+id/yesBTN"
+        android:layout_toStartOf="@+id/createEvent" />
 
     <CheckBox
         android:id="@+id/yesBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/datetimeBox"
-        android:layout_alignStart="@+id/confirmTXT"
         android:text="Yes"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_below="@+id/deleteBTN"
+        android:layout_alignStart="@+id/confirmTXT" />
 
     <CheckBox
         android:id="@+id/noBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/datetimeBox"
-        android:layout_alignEnd="@+id/eventList"
         android:text="No"
-        android:visibility="invisible" />
-
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/titlebox"
-        android:visibility="invisible" />
-
-    <RadioButton
-        android:id="@+id/pickDateBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick Date"
         android:visibility="invisible"
-        android:layout_below="@+id/createEvent"
-        android:layout_alignParentStart="true" />
-
-    <RadioButton
-        android:id="@+id/pickTimeBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/pickDateBTN"
-        android:layout_below="@+id/pickDateBTN"
-        android:text="Pick Time"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/okBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:visibility="invisible"
-        android:layout_below="@+id/pickTimeBTN"
-        android:layout_alignStart="@+id/datePicker"
-        android:layout_marginTop="18dp" />
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/addBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:onClick="onBtnClick3"
-        android:text="Add"
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/okBTN"
-        android:layout_alignBottom="@+id/okBTN"
-        android:layout_alignStart="@+id/okBTN" />
-
-    <Button
-        android:id="@+id/ok2BTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ok"
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/okBTN"
-        android:layout_alignBottom="@+id/okBTN"
-        android:layout_alignStart="@+id/okBTN" />
+        android:layout_below="@+id/confirmTXT"
+        android:layout_toEndOf="@+id/yesBTN" />
 
 </android.widget.RelativeLayout>

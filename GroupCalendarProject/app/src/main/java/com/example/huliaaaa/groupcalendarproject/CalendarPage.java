@@ -62,4 +62,10 @@ public class CalendarPage extends AppCompatActivity {
         Intent nextpage = new Intent(CalendarPage.this, MyCalendars.class);
         startActivity(nextpage);
     }
+    public void NextPage2(View V)
+    {
+        Intent nextpage = new Intent(CalendarPage.this, GroupCalendars.class);
+        startActivity(nextpage);
+    }
+
 }

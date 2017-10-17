@@ -96,17 +96,17 @@ public class CalendarView extends AppCompatActivity
         ourEventsArray = new ArrayList<OurEvent>();
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
-        title = (EditText) findViewById(R.id.titleTXT);
+       // title = (EditText) findViewById(R.id.titleTXT);
        // d = (EditText) findViewById(R.id.dateTXT);
-        description = (EditText) findViewById(R.id.descriptionTXT);
+      //  description = (EditText) findViewById(R.id.descriptionTXT);
         b2 = (Button) findViewById(R.id.createEvent);
-        b3 = (Button) findViewById(R.id.addBTN);
+      //  b3 = (Button) findViewById(R.id.addBTN);
         listView1 = (ListView) findViewById(R.id.eventList);
         eventDes = (EditText) findViewById(R.id.descriptionBox);
         eventDT = (EditText) findViewById(R.id.datetimeBox);
         eventTitle = (TextView) findViewById(R.id.titlebox);
         editBtn = (Button) findViewById(R.id.editBtn);
-        tv1 = (TextView) findViewById(R.id.textView10);
+        //tv1 = (TextView) findViewById(R.id.textView10);
         tv2 = (TextView) findViewById(R.id.textView14);
 
 
@@ -115,13 +115,13 @@ public class CalendarView extends AppCompatActivity
         ok = (CheckBox) findViewById(R.id.yesBTN);
         no = (CheckBox) findViewById(R.id.noBtn);
         ays = (TextView) findViewById(R.id.confirmTXT);
-        pickDate = (RadioButton) findViewById(R.id.pickDateBTN);
-        pickTime = (RadioButton) findViewById(R.id.pickTimeBTN);
-        tp = (TimePicker) findViewById(R.id.timePicker);
+      //  pickDate = (RadioButton) findViewById(R.id.pickDateBTN);
+      //  pickTime = (RadioButton) findViewById(R.id.pickTimeBTN);
+      //  tp = (TimePicker) findViewById(R.id.timePicker);
         dp = (DatePicker) findViewById(R.id.datePicker);
-        okay = (Button) findViewById(R.id.okBTN);
-        okay2 = (Button) findViewById(R.id.ok2BTN);
-        time = (EditText) findViewById(R.id.timeTXT);
+      //  okay = (Button) findViewById(R.id.okBTN);
+      //  okay2 = (Button) findViewById(R.id.ok2BTN);
+      //  time = (EditText) findViewById(R.id.timeTXT);
 
 
 
@@ -271,7 +271,7 @@ public class CalendarView extends AppCompatActivity
             }
         });
         //onBtnClick2();
-        onBtnClick3();
+     //   onBtnClick3();
         onExitClick();
         CreateEventClick();
     }
@@ -469,75 +469,75 @@ public void onExitClick()
         }
     });
 }
-    public void onBtnClick3()
-    {
-        b3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
+ // public void onBtnClick3()
+ // {
+ //     b3.setOnClickListener(new View.OnClickListener()
+ //     {
+ //         @Override
+ //         public void onClick(View v)
+ //         {
 
 
-                String des = description.getText().toString();
-               // View focusView = null;
-                String tit = title.getText().toString();
-              //  String dat = d.getText().toString();
+ //             String des = description.getText().toString();
+ //            // View focusView = null;
+ //             String tit = title.getText().toString();
+ //           //  String dat = d.getText().toString();
 
 
-                if (TextUtils.isEmpty(des))
-                {
-                    description.setError(getString(R.string.error_field_required));
+ //             if (TextUtils.isEmpty(des))
+ //             {
+ //                 description.setError(getString(R.string.error_field_required));
 
-                }
-                else if (TextUtils.isEmpty(tit))
-                {
-                    title.setError(getString(R.string.error_field_required));
-                }
-             // else if (TextUtils.isEmpty(dat))
-             // {
-             //     d.setError(getString(R.string.error_field_required));
-             // }
-                else
-                {
-               // int z = dp.getDayOfMonth();
-               // int za = dp.getMonth();
-               // int zq = dp.getYear();
-               // String zz = Integer.toString(z);
-               // String zaa = Integer.toString(za);
-               // String zqq = Integer.toString(zq);
-               // String q = zz + zaa + zqq;
-               // Date date = new Date(q);
-               // long milliseconds = date.getTime();
-                    Date date = new Date(dp.getYear()-1900, dp.getMonth(), dp.getDayOfMonth(), tp.getHour(), tp.getMinute());
-                    long milliseconds = date.getTime();
-
-
-
-                    ourEvent = new OurEvent(Color.RED, milliseconds, title.getText().toString(), description.getText().toString());
-                    ourEventsArray.add(ourEvent);
-                    Event event = new Event(Color.RED, milliseconds,title.getText().toString() );
-                    compactCalendar.addEvent(event);
-                    description.setVisibility(View.INVISIBLE);
-                   // d.setVisibility(View.INVISIBLE);
-                    title.setVisibility(View.INVISIBLE);
-                    b3.setVisibility(View.INVISIBLE);
-                    pickDate.setVisibility(View.INVISIBLE);
-                    pickTime.setVisibility(View.INVISIBLE);
+ //             }
+ //             else if (TextUtils.isEmpty(tit))
+ //             {
+ //                 title.setError(getString(R.string.error_field_required));
+ //             }
+ //          // else if (TextUtils.isEmpty(dat))
+ //          // {
+ //          //     d.setError(getString(R.string.error_field_required));
+ //          // }
+ //             else
+ //             {
+ //            // int z = dp.getDayOfMonth();
+ //            // int za = dp.getMonth();
+ //            // int zq = dp.getYear();
+ //            // String zz = Integer.toString(z);
+ //            // String zaa = Integer.toString(za);
+ //            // String zqq = Integer.toString(zq);
+ //            // String q = zz + zaa + zqq;
+ //            // Date date = new Date(q);
+ //            // long milliseconds = date.getTime();
+ //                 Date date = new Date(dp.getYear()-1900, dp.getMonth(), dp.getDayOfMonth(), tp.getHour(), tp.getMinute());
+ //                 long milliseconds = date.getTime();
 
 
 
-                    description.setText("");
-                  //  d.setText("");
-                    title.setText("");
-                    compactCalendar.setCurrentDate(p);
-                }
+ //                 ourEvent = new OurEvent(Color.RED, milliseconds, title.getText().toString(), description.getText().toString());
+ //                 ourEventsArray.add(ourEvent);
+ //                 Event event = new Event(Color.RED, milliseconds,title.getText().toString() );
+ //                 compactCalendar.addEvent(event);
+ //                 description.setVisibility(View.INVISIBLE);
+ //                // d.setVisibility(View.INVISIBLE);
+ //                 title.setVisibility(View.INVISIBLE);
+ //                 b3.setVisibility(View.INVISIBLE);
+ //                 pickDate.setVisibility(View.INVISIBLE);
+ //                 pickTime.setVisibility(View.INVISIBLE);
+
+
+
+ //                 description.setText("");
+ //               //  d.setText("");
+ //                 title.setText("");
+ //                 compactCalendar.setCurrentDate(p);
+ //             }
 
 
 
 
 
-            }
-        });
-    }
+ //         }
+ //     });
+ // }
 
 }
