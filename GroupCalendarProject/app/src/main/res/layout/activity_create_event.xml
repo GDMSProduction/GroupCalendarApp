@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.huliaaaa.groupcalendarproject.CreateEvent">
+
+    <RadioButton
+        android:id="@+id/pickdate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/title_text"
+        android:layout_below="@+id/title_text"
+        android:layout_marginTop="20dp"
+        android:text="Pick Date" />
+
+    <TextView
+        android:id="@+id/neweventTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Event"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/neweventTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName" />
+
+    <RadioButton
+        android:id="@+id/picktime_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pickdate_btn"
+        android:layout_below="@+id/datepickd"
+        android:layout_marginTop="13dp"
+        android:text="Pick Time" />
+
+    <EditText
+        android:id="@+id/timepickd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/datepickd"
+        android:layout_alignTop="@+id/picktime_btn"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/datepickd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/title_text"
+        android:layout_alignTop="@+id/pickdate_btn"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/des_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/picktime_btn"
+        android:layout_below="@+id/timepickd"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/des_txt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="Add" />
+
+    <DatePicker
+        android:id="@+id/datePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/neweventTxt"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <TimePicker
+        android:id="@+id/timePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/neweventTxt"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/ok1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/add_btn"
+        android:layout_below="@+id/datePicker2"
+        android:text="OK" />
+
+    <Button
+        android:id="@+id/ok2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ok1"
+        android:layout_alignStart="@+id/ok1"
+        android:text="OK" />
+
+</android.widget.RelativeLayout>
