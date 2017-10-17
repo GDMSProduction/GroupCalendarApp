@@ -270,9 +270,10 @@ public class CalendarView extends AppCompatActivity
                 actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
             }
         });
-        onBtnClick2();
+        //onBtnClick2();
         onBtnClick3();
         onExitClick();
+        CreateEventClick();
     }
     public void onDeleteClick()
     {
@@ -286,156 +287,166 @@ public class CalendarView extends AppCompatActivity
         });
     }
 
-    public void onBtnClick2()
+    public void CreateEventClick()
     {
-        b2.setOnClickListener(new View.OnClickListener()
-        {
+        b2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                description.setVisibility(View.VISIBLE);
-               // d.setVisibility(View.VISIBLE);
-                listView1.setVisibility(View.INVISIBLE);
-                b2.setVisibility(View.INVISIBLE);
-
-                title.setVisibility(View.VISIBLE);
-                b3.setVisibility(View.VISIBLE);
-
-               // ex1.setVisibility(View.VISIBLE);
-               // ex2.setVisibility(View.VISIBLE);
-                pickDate.setVisibility(View.VISIBLE);
-                pickTime.setVisibility(View.VISIBLE);
-
-                pickDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        pickDate.setChecked(true);
-                        dp.setVisibility(View.VISIBLE);
-                        description.setVisibility(View.INVISIBLE);
-                        //d.setVisibility(View.INVISIBLE);
-                        listView1.setVisibility(View.INVISIBLE);
-                        b2.setVisibility(View.INVISIBLE);
-
-                        title.setVisibility(View.INVISIBLE);
-                        b3.setVisibility(View.INVISIBLE);
-
-
-                        pickDate.setVisibility(View.INVISIBLE);
-                        pickTime.setVisibility(View.INVISIBLE);
-                        compactCalendar.setVisibility(View.INVISIBLE);
-                        okay.setVisibility(View.VISIBLE);
-
-                        okay.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dp.setVisibility(View.INVISIBLE);
-                                description.setVisibility(View.VISIBLE);
-                              //  d.setVisibility(View.VISIBLE);
-                                listView1.setVisibility(View.VISIBLE);
-                                b2.setVisibility(View.VISIBLE);
-
-                                title.setVisibility(View.VISIBLE);
-                                b3.setVisibility(View.VISIBLE);
-
-                                //ex1.setVisibility(View.VISIBLE);
-                                //ex2.setVisibility(View.VISIBLE);
-                                pickDate.setVisibility(View.VISIBLE);
-                                pickTime.setVisibility(View.VISIBLE);
-                                compactCalendar.setVisibility(View.VISIBLE);
-                                okay.setVisibility(View.INVISIBLE);
-                              //  dp.setMinDate(System.currentTimeMillis());
-
-                              int z = dp.getDayOfMonth();
-                              int za = dp.getMonth();
-                              int zq = dp.getYear();
-                             String zz = String.valueOf(z);
-                             String zaa =String.valueOf(za);
-                             String zqq =String.valueOf(zq);
-                             thedate = zaa+ "/"  + zz+ "/" + zqq;
-                             //   d.setText(thedate);
-
-
-
-                               // Date date = new Date(q);
-                                //long milliseconds = z+za+zq;
-
-
-                           // nd = new Date(dp.getYear(),
-                           // dp.getMonth(),
-                           // dp.getDayOfMonth());
-
-                           // //doesnt actually format
-                           // DateFormat fd = new SimpleDateFormat("MM/dd/yy");
-
-
-                           // //formatted value of current Date
-                           // fd.format(nd);
-                           // d.setText(nd.toString());
-
-                            }
-                        });
-
-
-                    }
-                });
-                pickTime.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        pickTime.setChecked(true);
-                        tp.setVisibility(View.VISIBLE);
-                        description.setVisibility(View.INVISIBLE);
-                       // d.setVisibility(View.INVISIBLE);
-                        listView1.setVisibility(View.INVISIBLE);
-                        b2.setVisibility(View.INVISIBLE);
-
-                        title.setVisibility(View.INVISIBLE);
-                        b3.setVisibility(View.INVISIBLE);
-
-                        pickDate.setVisibility(View.INVISIBLE);
-                        pickTime.setVisibility(View.INVISIBLE);
-                        compactCalendar.setVisibility(View.INVISIBLE);
-                        okay2.setVisibility(View.VISIBLE);
-
-                        okay2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                tp.setVisibility(View.INVISIBLE);
-                                description.setVisibility(View.VISIBLE);
-                                //d.setVisibility(View.VISIBLE);
-                                listView1.setVisibility(View.VISIBLE);
-                                b2.setVisibility(View.VISIBLE);
-                               // time.setVisibility(View.VISIBLE);
-
-                                title.setVisibility(View.VISIBLE);
-                                b3.setVisibility(View.VISIBLE);
-
-
-                                pickDate.setVisibility(View.VISIBLE);
-                                pickTime.setVisibility(View.VISIBLE);
-                                compactCalendar.setVisibility(View.VISIBLE);
-                                okay2.setVisibility(View.INVISIBLE);
-
-                                int hour = tp.getHour();
-                                int minute =  tp.getMinute();
-
-                                String thehour = String.valueOf(hour);
-                                String theminute = String.valueOf(minute);
-
-
-                              //  time.setText(thehour + ":" + theminute);
-
-                            }
-                        });
-                    }
-                });
-
-
-                title.requestFocus();
-
-
+            public void onClick(View v) {
+                Intent inten= new Intent(CalendarView.this, CreateEvent.class);
+                startActivity(inten);
             }
         });
     }
+// public void onBtnClick2()
+// {
+//     b2.setOnClickListener(new View.OnClickListener()
+//     {
+//         @Override
+//         public void onClick(View v)
+//         {
+//             description.setVisibility(View.VISIBLE);
+//            // d.setVisibility(View.VISIBLE);
+//             listView1.setVisibility(View.INVISIBLE);
+//             b2.setVisibility(View.INVISIBLE);
+
+//             title.setVisibility(View.VISIBLE);
+//             b3.setVisibility(View.VISIBLE);
+
+//            // ex1.setVisibility(View.VISIBLE);
+//            // ex2.setVisibility(View.VISIBLE);
+//             pickDate.setVisibility(View.VISIBLE);
+//             pickTime.setVisibility(View.VISIBLE);
+
+//             pickDate.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                 public void onClick(View v) {
+//                     pickDate.setChecked(true);
+//                     dp.setVisibility(View.VISIBLE);
+//                     description.setVisibility(View.INVISIBLE);
+//                     //d.setVisibility(View.INVISIBLE);
+//                     listView1.setVisibility(View.INVISIBLE);
+//                     b2.setVisibility(View.INVISIBLE);
+
+//                     title.setVisibility(View.INVISIBLE);
+//                     b3.setVisibility(View.INVISIBLE);
+
+
+//                     pickDate.setVisibility(View.INVISIBLE);
+//                     pickTime.setVisibility(View.INVISIBLE);
+//                     compactCalendar.setVisibility(View.INVISIBLE);
+//                     okay.setVisibility(View.VISIBLE);
+
+//                     okay.setOnClickListener(new View.OnClickListener() {
+//                         @Override
+//                         public void onClick(View v) {
+//                             dp.setVisibility(View.INVISIBLE);
+//                             description.setVisibility(View.VISIBLE);
+//                           //  d.setVisibility(View.VISIBLE);
+//                             listView1.setVisibility(View.VISIBLE);
+//                             b2.setVisibility(View.VISIBLE);
+
+//                             title.setVisibility(View.VISIBLE);
+//                             b3.setVisibility(View.VISIBLE);
+
+//                             //ex1.setVisibility(View.VISIBLE);
+//                             //ex2.setVisibility(View.VISIBLE);
+//                             pickDate.setVisibility(View.VISIBLE);
+//                             pickTime.setVisibility(View.VISIBLE);
+//                             compactCalendar.setVisibility(View.VISIBLE);
+//                             okay.setVisibility(View.INVISIBLE);
+//                           //  dp.setMinDate(System.currentTimeMillis());
+
+//                           int z = dp.getDayOfMonth();
+//                           int za = dp.getMonth();
+//                           int zq = dp.getYear();
+//                          String zz = String.valueOf(z);
+//                          String zaa =String.valueOf(za);
+//                          String zqq =String.valueOf(zq);
+//                          thedate = zaa+ "/"  + zz+ "/" + zqq;
+//                          //   d.setText(thedate);
+
+
+
+//                            // Date date = new Date(q);
+//                             //long milliseconds = z+za+zq;
+
+
+//                        // nd = new Date(dp.getYear(),
+//                        // dp.getMonth(),
+//                        // dp.getDayOfMonth());
+
+//                        // //doesnt actually format
+//                        // DateFormat fd = new SimpleDateFormat("MM/dd/yy");
+
+
+//                        // //formatted value of current Date
+//                        // fd.format(nd);
+//                        // d.setText(nd.toString());
+
+//                         }
+//                     });
+
+
+//                 }
+//             });
+//             pickTime.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                 public void onClick(View v) {
+//                     pickTime.setChecked(true);
+//                     tp.setVisibility(View.VISIBLE);
+//                     description.setVisibility(View.INVISIBLE);
+//                    // d.setVisibility(View.INVISIBLE);
+//                     listView1.setVisibility(View.INVISIBLE);
+//                     b2.setVisibility(View.INVISIBLE);
+
+//                     title.setVisibility(View.INVISIBLE);
+//                     b3.setVisibility(View.INVISIBLE);
+
+//                     pickDate.setVisibility(View.INVISIBLE);
+//                     pickTime.setVisibility(View.INVISIBLE);
+//                     compactCalendar.setVisibility(View.INVISIBLE);
+//                     okay2.setVisibility(View.VISIBLE);
+
+//                     okay2.setOnClickListener(new View.OnClickListener() {
+//                         @Override
+//                         public void onClick(View v) {
+//                             tp.setVisibility(View.INVISIBLE);
+//                             description.setVisibility(View.VISIBLE);
+//                             //d.setVisibility(View.VISIBLE);
+//                             listView1.setVisibility(View.VISIBLE);
+//                             b2.setVisibility(View.VISIBLE);
+//                            // time.setVisibility(View.VISIBLE);
+
+//                             title.setVisibility(View.VISIBLE);
+//                             b3.setVisibility(View.VISIBLE);
+
+
+//                             pickDate.setVisibility(View.VISIBLE);
+//                             pickTime.setVisibility(View.VISIBLE);
+//                             compactCalendar.setVisibility(View.VISIBLE);
+//                             okay2.setVisibility(View.INVISIBLE);
+
+//                             int hour = tp.getHour();
+//                             int minute =  tp.getMinute();
+
+//                             String thehour = String.valueOf(hour);
+//                             String theminute = String.valueOf(minute);
+
+
+//                           //  time.setText(thehour + ":" + theminute);
+
+//                         }
+//                     });
+//                 }
+//             });
+
+
+//             title.requestFocus();
+
+
+//         }
+//     });
+// }
 public void onExitClick()
 {
     exit.setOnClickListener(new View.OnClickListener() {
