@@ -3,6 +3,7 @@ package com.example.huliaaaa.groupcalendarproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,6 +34,15 @@ public class CreateEvent extends AppCompatActivity {
     OurEvent Ourevent;
     ArrayList<OurEvent> ourEventArray;
     Event event;
+    CheckBox noDes;
+    RadioButton pickTheColor;
+    EditText Colorpicked;
+    CheckBox redBX;
+    CheckBox cyanBX;
+    CheckBox greenBX;
+    CheckBox magentaBX;
+    CheckBox yellowBX;
+    int colorPicked;
 
 
 
@@ -40,23 +50,41 @@ public class CreateEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Event Creation");
 
         addevent = (Button) findViewById(R.id.add_btn);
         Time = (EditText) findViewById(R.id.timepickd);
         Date = (EditText) findViewById(R.id.datepickd);
+        Colorpicked = (EditText) findViewById(R.id.colorpickd);
         pickTheDate = (RadioButton) findViewById(R.id.pickdate_btn);
         pickTheTime = (RadioButton) findViewById(R.id.picktime_btn);
+        pickTheColor = (RadioButton) findViewById(R.id.pickColorBtn);
         DP = (DatePicker ) findViewById(R.id.datePicker2);
         TP = (TimePicker) findViewById(R.id.timePicker2);
         ok1 = (Button) findViewById(R.id.ok1);
         ok2 = (Button) findViewById(R.id.ok2);
+        TITLE = (EditText) findViewById(R.id.title_text);
+        DESCRIPTION = (EditText) findViewById(R.id.des_txt);
+        ourEventArray = new ArrayList<OurEvent>();
+        noDes = (CheckBox) findViewById(R.id.noDes_checkbox);
+        redBX = (CheckBox) findViewById(R.id.redBox);
+        cyanBX  = (CheckBox) findViewById(R.id.cyanBox);
+        greenBX= (CheckBox) findViewById(R.id.greenBox);
+        magentaBX= (CheckBox) findViewById(R.id.magentaBox);
+        yellowBX= (CheckBox) findViewById(R.id.yellowBox);
+
         ok1.setVisibility(View.INVISIBLE);
         ok2.setVisibility(View.INVISIBLE);
         Date.setVisibility(View.INVISIBLE);
         Time.setVisibility(View.INVISIBLE);
-        TITLE = (EditText) findViewById(R.id.title_text);
-        DESCRIPTION = (EditText) findViewById(R.id.des_txt);
-        ourEventArray = new ArrayList<OurEvent>();
+        Colorpicked.setVisibility(View.INVISIBLE);
+        redBX.setVisibility(View.INVISIBLE);
+        cyanBX.setVisibility(View.INVISIBLE);
+        greenBX.setVisibility(View.INVISIBLE);
+        magentaBX.setVisibility(View.INVISIBLE);
+        yellowBX.setVisibility(View.INVISIBLE);
+
 
         pickTheDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +97,15 @@ public class CreateEvent extends AppCompatActivity {
                 DP.setVisibility(View.VISIBLE);
                 TITLE.setVisibility(View.INVISIBLE);
                 DESCRIPTION.setVisibility(View.INVISIBLE);
+                Colorpicked.setVisibility(View.INVISIBLE);
+                redBX.setVisibility(View.INVISIBLE);
+                cyanBX.setVisibility(View.INVISIBLE);
+                greenBX.setVisibility(View.INVISIBLE);
+                magentaBX.setVisibility(View.INVISIBLE);
+                yellowBX.setVisibility(View.INVISIBLE);
+                noDes.setVisibility(View.INVISIBLE);
+                pickTheColor.setVisibility(View.INVISIBLE);
+                Time.setVisibility(View.INVISIBLE);
 
                 ok1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -81,9 +118,15 @@ public class CreateEvent extends AppCompatActivity {
                         DP.setVisibility(View.INVISIBLE);
                         TITLE.setVisibility(View.VISIBLE);
                         DESCRIPTION.setVisibility(View.VISIBLE);
+                        noDes.setVisibility(View.VISIBLE);
+                        pickTheColor.setVisibility(View.VISIBLE);
                         if (pickTheTime.isChecked())
                         {
                             Time.setVisibility(View.VISIBLE);
+                        }
+                        if (pickTheColor.isChecked())
+                        {
+                            Colorpicked.setVisibility(View.VISIBLE);
                         }
 
 
@@ -112,6 +155,14 @@ public class CreateEvent extends AppCompatActivity {
                 DESCRIPTION.setVisibility(View.INVISIBLE);
                 Date.setVisibility(View.INVISIBLE);
                 Time.setVisibility(View.VISIBLE);
+                Colorpicked.setVisibility(View.INVISIBLE);
+                redBX.setVisibility(View.INVISIBLE);
+                cyanBX.setVisibility(View.INVISIBLE);
+                greenBX.setVisibility(View.INVISIBLE);
+                magentaBX.setVisibility(View.INVISIBLE);
+                yellowBX.setVisibility(View.INVISIBLE);
+                noDes.setVisibility(View.INVISIBLE);
+                pickTheColor.setVisibility(View.INVISIBLE);
 
                 ok2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -124,11 +175,17 @@ public class CreateEvent extends AppCompatActivity {
                         TITLE.setVisibility(View.VISIBLE);
                         DESCRIPTION.setVisibility(View.VISIBLE);
                         TP.setVisibility(View.INVISIBLE);
+                        noDes.setVisibility(View.VISIBLE);
+                        pickTheColor.setVisibility(View.VISIBLE);
 
 
                         if (pickTheDate.isChecked())
                         {
                             Date.setVisibility(View.VISIBLE);
+                        }
+                        if (pickTheColor.isChecked())
+                        {
+                            Colorpicked.setVisibility(View.VISIBLE);
                         }
                         Time.setVisibility(View.VISIBLE);
                         String HOUR = String.valueOf(TP.getHour());
@@ -141,6 +198,93 @@ public class CreateEvent extends AppCompatActivity {
                 });
             }
         });
+        pickTheColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redBX.setVisibility(View.VISIBLE);
+                cyanBX.setVisibility(View.VISIBLE);
+                greenBX.setVisibility(View.VISIBLE);
+                magentaBX.setVisibility(View.VISIBLE);
+                yellowBX.setVisibility(View.VISIBLE);
+
+                    redBX.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                    Colorpicked.setVisibility(View.VISIBLE);
+                    Colorpicked.setText("Red");
+                    cyanBX.setChecked(false);
+                    greenBX.setChecked(false);
+                    magentaBX.setChecked(false);
+                    yellowBX.setChecked(false);
+                    colorPicked = Color.RED;
+                        }
+                    });
+
+
+
+                    cyanBX.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                    Colorpicked.setVisibility(View.VISIBLE);
+                    Colorpicked.setText("Cyan");
+                    redBX.setChecked(false);
+                    greenBX.setChecked(false);
+                    magentaBX.setChecked(false);
+                    yellowBX.setChecked(false);
+                    colorPicked = Color.CYAN;
+                        }
+                    });
+
+
+
+                    greenBX.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                    Colorpicked.setVisibility(View.VISIBLE);
+                    Colorpicked.setText("Green");
+                    cyanBX.setChecked(false);
+                    redBX.setChecked(false);
+                    magentaBX.setChecked(false);
+                    yellowBX.setChecked(false);
+                    colorPicked = Color.GREEN;
+                        }
+                    });
+
+
+                    magentaBX.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                    Colorpicked.setVisibility(View.VISIBLE);
+                    Colorpicked.setText("Magenta");
+                    cyanBX.setChecked(false);
+                    greenBX.setChecked(false);
+                    redBX.setChecked(false);
+                    yellowBX.setChecked(false);
+                    colorPicked = Color.MAGENTA;
+
+                        }
+                    });
+
+
+                    yellowBX.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                    Colorpicked.setVisibility(View.VISIBLE);
+                    Colorpicked.setText("Yellow");
+                    cyanBX.setChecked(false);
+                    greenBX.setChecked(false);
+                    magentaBX.setChecked(false);
+                    redBX.setChecked(false);
+                    colorPicked = Color.YELLOW;
+                        }
+                    });
+
+
+            }
+        });
 
         addevent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,12 +293,19 @@ public class CreateEvent extends AppCompatActivity {
                 String dess = DESCRIPTION.getText().toString();
                 String titt = TITLE.getText().toString();
 
+                if (noDes.isChecked()==false)
+                {
                 if (TextUtils.isEmpty(dess))
                 {
                     DESCRIPTION.setError(getString(R.string.error_field_required));
 
                 }
-                else if (TextUtils.isEmpty(titt))
+                }
+                else if (pickTheColor.isChecked() == false)
+                {
+                    colorPicked = Color.RED;
+                }
+                 else if (TextUtils.isEmpty(titt))
                 {
                     TITLE.setError(getString(R.string.error_field_required));
                 }
@@ -172,11 +323,18 @@ public class CreateEvent extends AppCompatActivity {
                     Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
                     long millisecondsS = datee.getTime();
 
-
-
-                    Ourevent = new OurEvent(Color.RED, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                    if (noDes.isChecked())
+                    {
+                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString());
+                        ourEventArray.add(Ourevent);
+                        event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                    }
+                    else
+                    {
+                    Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
                     ourEventArray.add(Ourevent);
-                    event = new Event(Color.RED, millisecondsS,TITLE.getText().toString() );
+                    event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                    }
                     //compactCalendar.addEvent(event);
 
                     Intent intent = new Intent(CreateEvent.this, CalendarView.class);

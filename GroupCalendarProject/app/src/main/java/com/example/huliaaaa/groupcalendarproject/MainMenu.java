@@ -1,6 +1,7 @@
 package com.example.huliaaaa.groupcalendarproject;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,11 +16,14 @@ import java.util.Set;
 public class MainMenu extends AppCompatActivity {
 
     private TextView tvEmail;
+    Menu damenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-      // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar4);
+     final ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Main Menu");
+
       //  setSupportActionBar(toolbar);
         //tvEmail = (TextView) findViewById(R.id.txtEmail);
        // tvEmail.setText(getIntent().getExtras().getString("Email"));
@@ -32,6 +36,9 @@ public class MainMenu extends AppCompatActivity {
 //        mf.inflate(R.menu.toolbar_menu, m);
 //        return true;
         getMenuInflater().inflate(R.menu.toolbar_menu,m);
+
+      // m.findItem(R.menu.toolbar_menu).setTitle("Main Menu");
+
 
         return super.onCreateOptionsMenu(m);
     }

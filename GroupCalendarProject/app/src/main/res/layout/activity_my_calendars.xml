@@ -23,11 +23,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="My Calendars"
-        android:textSize="24sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="My Calendar List"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView4"

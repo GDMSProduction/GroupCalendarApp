@@ -10,10 +10,9 @@
         android:id="@+id/pickdate_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/title_text"
-        android:layout_below="@+id/title_text"
-        android:layout_marginTop="20dp"
-        android:text="Pick Date" />
+        android:text="Pick Date"
+        android:layout_above="@+id/timepickd"
+        android:layout_alignStart="@+id/title_text" />
 
     <TextView
         android:id="@+id/neweventTxt"
@@ -43,66 +42,75 @@
         android:id="@+id/picktime_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/pickdate_btn"
-        android:layout_below="@+id/datepickd"
-        android:layout_marginTop="13dp"
-        android:text="Pick Time" />
+        android:text="Pick Time"
+        android:layout_alignBaseline="@+id/timepickd"
+        android:layout_alignBottom="@+id/timepickd"
+        android:layout_alignStart="@+id/pickdate_btn" />
 
     <EditText
         android:id="@+id/timepickd"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/datepickd"
-        android:layout_alignTop="@+id/picktime_btn"
         android:ems="10"
         android:inputType="textPersonName"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_below="@+id/datepickd"
+        android:layout_alignStart="@+id/datepickd" />
 
     <EditText
         android:id="@+id/datepickd"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title_text"
-        android:layout_alignTop="@+id/pickdate_btn"
         android:ems="10"
         android:inputType="textPersonName"
-        android:visibility="visible" />
-
-    <EditText
-        android:id="@+id/des_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/picktime_btn"
-        android:layout_below="@+id/timepickd"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="Description"
-        android:inputType="textMultiLine" />
+        android:visibility="visible"
+        android:layout_below="@+id/title_text"
+        android:layout_toStartOf="@+id/yellowBox" />
 
     <Button
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/des_txt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="Add" />
+        android:text="Add"
+        android:layout_alignBaseline="@+id/ok1"
+        android:layout_alignBottom="@+id/ok1"
+        android:layout_centerHorizontal="true" />
 
     <DatePicker
         android:id="@+id/datePicker2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/neweventTxt"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/neweventTxt2"
+        android:layout_centerHorizontal="true" />
 
     <TimePicker
         android:id="@+id/timePicker2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:visibility="invisible"
         android:layout_alignTop="@+id/neweventTxt"
-        android:visibility="invisible" />
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/colorpickd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible"
+        android:layout_below="@+id/timepickd"
+        android:layout_alignStart="@+id/timepickd" />
+
+    <EditText
+        android:id="@+id/des_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:layout_alignBottom="@+id/timePicker2"
+        android:layout_alignStart="@+id/datePicker2" />
 
     <Button
         android:id="@+id/ok1"
@@ -119,5 +127,67 @@
         android:layout_alignBottom="@+id/ok1"
         android:layout_alignStart="@+id/ok1"
         android:text="OK" />
+
+    <CheckBox
+        android:id="@+id/noDes_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Description"
+        android:layout_alignBaseline="@+id/des_txt"
+        android:layout_alignBottom="@+id/des_txt"
+        android:layout_toEndOf="@+id/add_btn" />
+
+    <RadioButton
+        android:id="@+id/pickColorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Color"
+        android:layout_alignBaseline="@+id/colorpickd"
+        android:layout_alignBottom="@+id/colorpickd"
+        android:layout_alignStart="@+id/picktime_btn" />
+
+    <CheckBox
+        android:id="@+id/redBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red"
+        android:layout_above="@+id/des_txt"
+        android:layout_alignStart="@+id/datePicker2" />
+
+    <CheckBox
+        android:id="@+id/cyanBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cyan"
+        android:layout_alignBaseline="@+id/redBox"
+        android:layout_alignBottom="@+id/redBox"
+        android:layout_toStartOf="@+id/neweventTxt" />
+
+    <CheckBox
+        android:id="@+id/magentaBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cyanBox"
+        android:layout_alignBottom="@+id/cyanBox"
+        android:layout_toEndOf="@+id/cyanBox"
+        android:text="Magenta" />
+
+    <CheckBox
+        android:id="@+id/greenBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/magentaBox"
+        android:layout_alignBottom="@+id/magentaBox"
+        android:layout_toEndOf="@+id/magentaBox"
+        android:text="Green" />
+
+    <CheckBox
+        android:id="@+id/yellowBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yellow"
+        android:layout_alignBaseline="@+id/greenBox"
+        android:layout_alignBottom="@+id/greenBox"
+        android:layout_toEndOf="@+id/greenBox" />
 
 </android.widget.RelativeLayout>

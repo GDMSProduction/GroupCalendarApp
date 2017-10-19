@@ -3,6 +3,7 @@ package com.example.huliaaaa.groupcalendarproject;
 import android.app.LauncherActivity;
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 
 public class MyCalendars extends AppCompatActivity {
 
-    ArrayList<String> arrayList;
+    ArrayList<String> myCalendarsList;
     EditText editText;
     ArrayAdapter<String> adapter;
     ListView listView;
@@ -36,6 +37,8 @@ public class MyCalendars extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_calendars);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("My Calendars");
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar5);
         //setSupportActionBar(toolbar);listView = (ListView) findViewById(R.id.listView);
 
@@ -47,9 +50,9 @@ public class MyCalendars extends AppCompatActivity {
         rb1.setChecked(true);
 
 
-        arrayList = new ArrayList<String>();
+        myCalendarsList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(MyCalendars.this, android.R.layout.simple_list_item_1,
-                arrayList);
+                myCalendarsList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,7 +80,7 @@ public class MyCalendars extends AppCompatActivity {
                  else if (rb1.isChecked())
                  {
                      String result = editText.getText().toString() + " (Public)";
-                     arrayList.add(result);
+                     myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      rb2.setChecked(false);
                      editText.setText("");
@@ -86,7 +89,7 @@ public class MyCalendars extends AppCompatActivity {
                  else if (rb2.isChecked())
                  {
                      String result = editText.getText().toString() + " (Private)";
-                     arrayList.add(result);
+                     myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      rb1.setChecked(false);
                      editText.setText("");
@@ -95,7 +98,7 @@ public class MyCalendars extends AppCompatActivity {
                  else
                  {
                      String result = editText.getText().toString();
-                     arrayList.add(result);
+                     myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      editText.setText("");
                      editText.setError(null);

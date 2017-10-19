@@ -31,11 +31,11 @@
         <user-permission android:name="android.permission.INTERNET" />
 
         <activity android:name=".CalendarView" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".CreateEvent" />
-        <activity android:name=".GroupCalendars"></activity>
+        <activity android:name=".GroupCalendars" />
+        <activity android:name=".AddFriendsToGroupCalendar" />
+        <activity android:name=".GroupCalendarView" />
+        <activity android:name=".CreateGroupEvent"></activity>
     </application>
 
 </manifest>

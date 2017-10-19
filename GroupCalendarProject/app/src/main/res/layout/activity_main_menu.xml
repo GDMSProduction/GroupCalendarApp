@@ -16,7 +16,7 @@
         android:layout_marginTop="78dp"
         android:onClick="NextPage"
         android:text="Calendars >"
-        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="32sp"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="59dp" />
@@ -63,7 +63,7 @@
         android:layout_marginTop="23dp"
         android:onClick="NextPageFriends"
         android:text="Friends >"
-        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="32sp" />
 
     <ImageView
@@ -83,7 +83,7 @@
         android:layout_marginTop="23dp"
         android:onClick="NextPageThemes"
         android:text="Themes >"
-        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="32sp" />
 
     <ImageView
@@ -103,7 +103,7 @@
         android:layout_marginTop="24dp"
         android:onClick="NextPageSetttings"
         android:text="Settings >"
-        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="32sp" />
 
     <ImageView

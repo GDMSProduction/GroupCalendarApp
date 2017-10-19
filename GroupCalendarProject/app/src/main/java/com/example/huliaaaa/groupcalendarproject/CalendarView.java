@@ -32,9 +32,11 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.Vector;
 
 public class CalendarView extends AppCompatActivity
@@ -91,7 +93,34 @@ public class CalendarView extends AppCompatActivity
         setContentView(R.layout.activity_calendar_view);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle("October - 2017");
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        int year = calendar.get(calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        if (month ==1 )
+        actionBar.setTitle("January" + " " + year);
+        else if (month == 2)
+            actionBar.setTitle("February" + " " + year);
+        else if (month == 3)
+            actionBar.setTitle("March" + " " + year);
+        else if (month == 4)
+            actionBar.setTitle("April" + " " + year);
+        else if (month == 5)
+            actionBar.setTitle("May" + " " + year);
+        else if (month == 6)
+            actionBar.setTitle("June" + " " + year);
+        else if (month == 7)
+            actionBar.setTitle("July" + " " + year);
+        else if (month == 8)
+            actionBar.setTitle("August" + " " + year);
+        else if (month == 9)
+            actionBar.setTitle("September" + " " + year);
+        else if (month == 10)
+            actionBar.setTitle("October" + " " + year);
+        else if (month == 11)
+            actionBar.setTitle("November" + " " + year);
+        else if (month == 12)
+            actionBar.setTitle("December" + " " + year);
+
 
         ourEventsArray = new ArrayList<OurEvent>();
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);

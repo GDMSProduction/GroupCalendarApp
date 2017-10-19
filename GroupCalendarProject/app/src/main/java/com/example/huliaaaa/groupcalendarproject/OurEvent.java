@@ -22,6 +22,12 @@ public class OurEvent {
         data = _data;
         description = _description;
     }
+    public OurEvent(int _color, long _timeInMillis, Object _data)
+    {
+        color = _color;
+        timeInMillis = _timeInMillis;
+        data = _data;
+    }
 
     public int getColor() {
         return color;
