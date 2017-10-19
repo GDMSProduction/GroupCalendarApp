@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "137638625766-8qtbdd6lnjhj5qqqdu1a1v4ppj51m0g6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.huliaaaa.groupcalendarproject",
+            "certificate_hash": "79f0dc087778847cf91dadd3ff78e94cc7101266"
+          }
+        },
+        {
           "client_id": "137638625766-9evcbgdet0764idm77sg80fiepamuu15.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

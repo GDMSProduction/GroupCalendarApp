@@ -3,7 +3,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url 'C:/Users/Huliaaaa/AppData/Local/Android/sdk/extras/android/m2repository'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'

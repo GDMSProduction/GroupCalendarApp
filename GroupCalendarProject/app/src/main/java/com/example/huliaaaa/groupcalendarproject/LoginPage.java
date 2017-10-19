@@ -15,9 +15,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPage extends AppCompatActivity {
-
     private EditText txtEmailAddress;
     private EditText txtPassword;
     FirebaseAuth firebaseAuth;
@@ -27,6 +28,9 @@ public class LoginPage extends AppCompatActivity {
     private static final String TAG = "LoginPage";
     public Button reg;
     public Button log;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,8 @@ public class LoginPage extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txtPwd);
         reg = (Button) findViewById(R.id.registerBTN);
         log = (Button) findViewById(R.id.loginBTN);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener()
         {
@@ -137,7 +143,10 @@ public class LoginPage extends AppCompatActivity {
                     txtPassword.setError("Password must be 8 characters long");
                     txtPassword.requestFocus();
                 }
+                //saveUserInfo();
             }
+
+
         });
 
     }
@@ -231,5 +240,18 @@ public class LoginPage extends AppCompatActivity {
         Intent nextpage = new Intent(LoginPage.this, MainMenu.class);
                 startActivity(nextpage);
     }
+
+    //private void saveUserInfo()
+    //{
+    //    String username = txtEmailAddress.getText().toString().trim();
+    //    String password = txtPassword.getText().toString().trim();
+//
+    //    UserInformation userInformation = new UserInformation(username, password);
+//
+    //    //FirebaseUser user = firebaseAuth.getCurrentUser();
+//
+    //    databaseReference.child("daboy/make").setValue(userInformation);
+    //    Toast.makeText(this, "Information Saved...", Toast.LENGTH_LONG).show();
+    //}
 
 }

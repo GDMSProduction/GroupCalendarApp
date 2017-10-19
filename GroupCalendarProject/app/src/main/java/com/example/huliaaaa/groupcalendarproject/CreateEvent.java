@@ -12,6 +12,13 @@ import android.widget.*;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -34,6 +41,7 @@ public class CreateEvent extends AppCompatActivity {
     OurEvent Ourevent;
     ArrayList<OurEvent> ourEventArray;
     Event event;
+
     CheckBox noDes;
     RadioButton pickTheColor;
     EditText Colorpicked;
@@ -43,6 +51,13 @@ public class CreateEvent extends AppCompatActivity {
     CheckBox magentaBX;
     CheckBox yellowBX;
     int colorPicked;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    boolean exists;
+    FirebaseAuth firebaseAuth;
+    String currentcal;
+
 
 
 
@@ -78,12 +93,27 @@ public class CreateEvent extends AppCompatActivity {
         ok2.setVisibility(View.INVISIBLE);
         Date.setVisibility(View.INVISIBLE);
         Time.setVisibility(View.INVISIBLE);
+
         Colorpicked.setVisibility(View.INVISIBLE);
         redBX.setVisibility(View.INVISIBLE);
         cyanBX.setVisibility(View.INVISIBLE);
         greenBX.setVisibility(View.INVISIBLE);
         magentaBX.setVisibility(View.INVISIBLE);
         yellowBX.setVisibility(View.INVISIBLE);
+
+
+        TITLE = (EditText) findViewById(R.id.title_text);
+        DESCRIPTION = (EditText) findViewById(R.id.des_txt);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        ourEventArray = new ArrayList<OurEvent>();
+        String _email = user.getEmail();
+        String[] parts = _email.split("@");
+        _email = parts[0];
+        currentcal = "";
 
 
         pickTheDate.setOnClickListener(new View.OnClickListener() {
@@ -350,7 +380,64 @@ public class CreateEvent extends AppCompatActivity {
 
             }
         });
+
+       //databaseReference.child("users").child(_email).child("CurrentCal").addValueEventListener(new ValueEventListener() {
+       //    @Override
+       //    public void onDataChange(DataSnapshot dataSnapshot) {
+       //        // This method is called once with the initial value and again
+       //        // whenever data at this location is updated
+
+       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+       //        for (DataSnapshot child: children) {
+       //            currentcal = child.getValue().toString();
+       //            // arrayList = firebaselist;
+       //        }
+       //    }
+
+       //    @Override
+       //    public void onCancelled(DatabaseError error) {
+       //        // Failed to read value
+
+       //    }
+       //});
+
+       //databaseReference.child("users").child(_email).child("Calendars").child(currentcal).addValueEventListener(new ValueEventListener() {
+       //    @Override
+       //    public void onDataChange(DataSnapshot dataSnapshot) {
+       //        // This method is called once with the initial value and again
+       //        // whenever data at this location is updated
+
+       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+       //        for (DataSnapshot child: children) {
+       //            OurEvent event = (OurEvent) child.getValue();
+       //            ourEventArray.add(event);
+       //            // arrayList = firebaselist;
+       //        }
+       //    }
+
+       //    @Override
+       //    public void onCancelled(DatabaseError error) {
+       //        // Failed to read value
+
+       //    }
+       //});
     }
 
+    private void saveEventInfo()
+    {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String _email = user.getEmail();
+        String[] parts = _email.split("@");
+        _email = parts[0];
+        //String title = editText.getText().toString();
+        //String p = privacy;
+
+        databaseReference.child("users").child(_email).child("Calendars").child(currentcal).setValue(ourEventArray);
+        //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
+        //databaseReference.push();
+        Toast.makeText(this, "Calendar Saved...", Toast.LENGTH_SHORT).show();
+    }
 
 }
