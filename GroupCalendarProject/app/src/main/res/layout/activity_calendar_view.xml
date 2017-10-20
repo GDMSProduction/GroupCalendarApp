@@ -37,9 +37,9 @@
         android:visibility="visible"
         tools:layout_editor_absoluteX="252dp"
         tools:layout_editor_absoluteY="255dp"
-        android:layout_below="@+id/compactcalendar_view"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="43dp" />
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/descriptionBox"
+        android:layout_alignParentEnd="true" />
 
     <ListView
         android:id="@+id/eventList"

@@ -154,7 +154,7 @@ public class MyCalendars extends AppCompatActivity {
 
                 for (DataSnapshot child: children) {
                     Object title = child.getValue();
-                    arrayList.add(title.toString());
+                    myCalendarsList.add(title.toString());
                    // arrayList = firebaselist;
                 }
             }
@@ -331,7 +331,7 @@ public void clicka()
         //String title = editText.getText().toString();
         //String p = privacy;
 
-        databaseReference.child("users").child(_email).child("Calendars").setValue(arrayList);
+        databaseReference.child("users").child(_email).child("Calendars").setValue(myCalendarsList);
         //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
         //databaseReference.push();
         Toast.makeText(this, "Calendar Saved...", Toast.LENGTH_SHORT).show();

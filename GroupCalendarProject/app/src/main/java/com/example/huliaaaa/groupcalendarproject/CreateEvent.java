@@ -57,6 +57,11 @@ public class CreateEvent extends AppCompatActivity {
     boolean exists;
     FirebaseAuth firebaseAuth;
     String currentcal;
+    String calendar;
+
+    int _color;
+    long millis;
+    Object title;
 
 
 
@@ -113,7 +118,8 @@ public class CreateEvent extends AppCompatActivity {
         String _email = user.getEmail();
         String[] parts = _email.split("@");
         _email = parts[0];
-        currentcal = "";
+        currentcal = "hi";
+        calendar = "hi";
 
 
         pickTheDate.setOnClickListener(new View.OnClickListener() {
@@ -358,17 +364,20 @@ public class CreateEvent extends AppCompatActivity {
                         Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString());
                         ourEventArray.add(Ourevent);
                         event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                        saveEventInfo();
                     }
                     else
                     {
-                    Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
-                    ourEventArray.add(Ourevent);
-                    event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                        ourEventArray.add(Ourevent);
+                        event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                        saveEventInfo();
                     }
                     //compactCalendar.addEvent(event);
 
-                    Intent intent = new Intent(CreateEvent.this, CalendarView.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(CreateEvent.this, CalendarView.class);
+                    //startActivity(intent);
+
 
 
                     DESCRIPTION.setText("");
@@ -376,53 +385,57 @@ public class CreateEvent extends AppCompatActivity {
                     pickTheDate.setChecked(false);
                     TITLE.setText("");
 
+                    finish();
                 }
 
             }
         });
 
-       //databaseReference.child("users").child(_email).child("CurrentCal").addValueEventListener(new ValueEventListener() {
-       //    @Override
-       //    public void onDataChange(DataSnapshot dataSnapshot) {
-       //        // This method is called once with the initial value and again
-       //        // whenever data at this location is updated
+       databaseReference.child("users").child(_email).addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               // This method is called once with the initial value and again
+               // whenever data at this location is updated
 
-       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+               Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-       //        for (DataSnapshot child: children) {
-       //            currentcal = child.getValue().toString();
-       //            // arrayList = firebaselist;
-       //        }
-       //    }
+               for (DataSnapshot child: children) {
+                   if (child.getKey().toString().contains("CurrentCal"))
+                   currentcal = child.getValue().toString();
+                   // arrayList = firebaselist;
+               }
+           }
 
-       //    @Override
-       //    public void onCancelled(DatabaseError error) {
-       //        // Failed to read value
+           @Override
+           public void onCancelled(DatabaseError error) {
+               // Failed to read value
 
-       //    }
-       //});
+           }
+       });
 
-       //databaseReference.child("users").child(_email).child("Calendars").child(currentcal).addValueEventListener(new ValueEventListener() {
-       //    @Override
-       //    public void onDataChange(DataSnapshot dataSnapshot) {
-       //        // This method is called once with the initial value and again
-       //        // whenever data at this location is updated
+       databaseReference.child("users").child(_email).child("Calendars").child(currentcal).addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               // This method is called once with the initial value and again
+               // whenever data at this location is updated
 
-       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+               Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-       //        for (DataSnapshot child: children) {
-       //            OurEvent event = (OurEvent) child.getValue();
-       //            ourEventArray.add(event);
-       //            // arrayList = firebaselist;
-       //        }
-       //    }
+               for (DataSnapshot child: children) {
+                   OurEvent event = (OurEvent) child.getValue();
+                   ourEventArray.add(event);
+                   // arrayList = firebaselist;
+               }
+           }
 
-       //    @Override
-       //    public void onCancelled(DatabaseError error) {
-       //        // Failed to read value
+           @Override
+           public void onCancelled(DatabaseError error) {
+               // Failed to read value
 
-       //    }
-       //});
+           }
+       });
+
+
     }
 
     private void saveEventInfo()
@@ -434,10 +447,10 @@ public class CreateEvent extends AppCompatActivity {
         //String title = editText.getText().toString();
         //String p = privacy;
 
-        databaseReference.child("users").child(_email).child("Calendars").child(currentcal).setValue(ourEventArray);
+        databaseReference.child("users").child(_email).child("Events").child(calendar).setValue(ourEventArray);
         //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
         //databaseReference.push();
-        Toast.makeText(this, "Calendar Saved...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Event Saved...", Toast.LENGTH_SHORT).show();
     }
 
 }

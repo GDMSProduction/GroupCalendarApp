@@ -27,6 +27,13 @@ import android.widget.Toast;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.example.huliaaaa.groupcalendarproject.OurEvent;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -81,7 +88,16 @@ public class CalendarView extends AppCompatActivity
     Button okay2;
     String thedate;
     EditText time;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    boolean exists;
+    FirebaseAuth firebaseAuth;
+    String currentcal;
+    String calendartouse;
 
+    int _color;
+    long millis;
+    Object _title;
 
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
@@ -152,7 +168,15 @@ public class CalendarView extends AppCompatActivity
       //  okay2 = (Button) findViewById(R.id.ok2BTN);
       //  time = (EditText) findViewById(R.id.timeTXT);
 
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        String _email = user.getEmail();
+        String[] parts = _email.split("@");
+        _email = parts[0];
+        currentcal = "hi";
+        calendartouse = "hi";
 
 
         arrayList1 = new ArrayList<String>();
@@ -299,6 +323,75 @@ public class CalendarView extends AppCompatActivity
                 actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
             }
         });
+
+        databaseReference.child("users").child(_email).child("Events").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                for (DataSnapshot child: children) {
+                    if (child.getKey().toString().contains(currentcal))
+                    {
+                        calendartouse = child.getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+
+       //databaseReference.child("users").child(_email).child("Events").addValueEventListener(new ValueEventListener() {
+       //    @Override
+       //    public void onDataChange(DataSnapshot dataSnapshot) {
+       //        // This method is called once with the initial value and again
+       //        // whenever data at this location is updated
+
+       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+       //        for (DataSnapshot child: children) {
+       //            Iterable<DataSnapshot> children2 = child.getChildren();
+       //            for (DataSnapshot child2: children2)
+       //            {
+       //                Iterable<DataSnapshot> children3 = child2.getChildren();
+       //                for (DataSnapshot child3: children3)
+       //                {
+       //                    if (child3.getKey().toString().contains("color"))
+       //                    {
+       //                        _color = (int) child3.getValue();
+       //                    }
+       //                    else if (child3.getKey().toString().contains("data"))
+       //                    {
+       //                        _title = child3.getValue().toString();
+       //                    }
+       //                    else if (child3.getKey().toString().contains("timeInMillis"))
+       //                    {
+       //                        millis = (long) child3.getValue();
+       //                    }
+       //                }
+       //                Event event = new Event(_color, millis, title);
+       //                compactCalendar.addEvent(event);
+       //            }
+
+
+       //        }
+
+
+       //    }
+
+       //    @Override
+       //    public void onCancelled(DatabaseError error) {
+       //        // Failed to read value
+
+       //    }
+       //});
+
         //onBtnClick2();
      //   onBtnClick3();
         onExitClick();
