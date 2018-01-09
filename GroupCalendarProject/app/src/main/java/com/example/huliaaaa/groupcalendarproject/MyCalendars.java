@@ -124,15 +124,7 @@ public class MyCalendars extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(MyCalendars.this, android.R.layout.simple_list_item_1,
                 myCalendarsList);
         listView.setAdapter(adapter);
-        //listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position,
-        //                            long id) {
-//
-        //        Intent intent = new Intent(MyCalendars.this, CalendarView.class);
-        //        startActivity(intent);
-        //    }
-        //});
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
