@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.huliaaaa.groupcalendarproject.AddFriendsToGroupCalendar">
+    tools:context="com.SRJB.huliaaaa.groupcalendarproject.AddFriendsToGroupCalendar">
 
     <TextView
         android:id="@+id/textView8"
@@ -35,7 +35,7 @@
         android:layout_marginTop="25dp" />
 
     <ListView
-        android:id="@+id/addedFriends"
+        android:id="@+id/addedFriends2"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"

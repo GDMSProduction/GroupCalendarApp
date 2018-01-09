@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.huliaaaa.groupcalendarproject.CreateEvent">
+    tools:context="com.SRJB.huliaaaa.groupcalendarproject.CreateEvent">
 
     <RadioButton
         android:id="@+id/pickdate_btn"
@@ -65,7 +65,7 @@
         android:inputType="textPersonName"
         android:visibility="visible"
         android:layout_below="@+id/title_text"
-        android:layout_toStartOf="@+id/yellowBox" />
+        android:layout_toStartOf="@+id/blueBox" />
 
     <Button
         android:id="@+id/add_btn"
@@ -182,12 +182,12 @@
         android:text="Green" />
 
     <CheckBox
-        android:id="@+id/yellowBox"
+        android:id="@+id/blueBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yellow"
         android:layout_alignBaseline="@+id/greenBox"
         android:layout_alignBottom="@+id/greenBox"
-        android:layout_toEndOf="@+id/greenBox" />
+        android:layout_toEndOf="@+id/greenBox"
+        android:text="Blue" />
 
 </android.widget.RelativeLayout>
