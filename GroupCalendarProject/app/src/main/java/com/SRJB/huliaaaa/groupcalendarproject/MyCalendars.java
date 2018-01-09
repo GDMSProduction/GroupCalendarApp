@@ -1,16 +1,11 @@
-package com.example.huliaaaa.groupcalendarproject;
+package com.SRJB.huliaaaa.groupcalendarproject;
 
-import android.app.LauncherActivity;
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MyCalendars extends AppCompatActivity {
 
@@ -51,7 +45,7 @@ public class MyCalendars extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     boolean exists;
-    String currentcal;
+    public static String currentcal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +118,15 @@ public class MyCalendars extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(MyCalendars.this, android.R.layout.simple_list_item_1,
                 myCalendarsList);
         listView.setAdapter(adapter);
-
+        //listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //    @Override
+        //    public void onItemClick(AdapterView<?> parent, View view, int position,
+        //                            long id) {
+//
+        //        Intent intent = new Intent(MyCalendars.this, CalendarView.class);
+        //        startActivity(intent);
+        //    }
+        //});
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

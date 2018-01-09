@@ -1,8 +1,6 @@
-package com.example.huliaaaa.groupcalendarproject;
+package com.SRJB.huliaaaa.groupcalendarproject;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 
-import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,8 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,7 +44,7 @@ public class CreateEvent extends AppCompatActivity {
     CheckBox cyanBX;
     CheckBox greenBX;
     CheckBox magentaBX;
-    CheckBox yellowBX;
+    CheckBox blueBX;
     int colorPicked;
 
     private FirebaseDatabase database;
@@ -64,12 +59,19 @@ public class CreateEvent extends AppCompatActivity {
     Object title;
 
 
+    OurEvent NewEvent;
 
+    ArrayList<Integer> colors;
+    ArrayList<Object> datas;
+    ArrayList<Long> timesinmillis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        colors = new ArrayList<Integer>();
+        datas = new ArrayList<Object>();
+        timesinmillis = new ArrayList<Long>();
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Event Creation");
 
@@ -92,7 +94,7 @@ public class CreateEvent extends AppCompatActivity {
         cyanBX  = (CheckBox) findViewById(R.id.cyanBox);
         greenBX= (CheckBox) findViewById(R.id.greenBox);
         magentaBX= (CheckBox) findViewById(R.id.magentaBox);
-        yellowBX= (CheckBox) findViewById(R.id.yellowBox);
+        blueBX= (CheckBox) findViewById(R.id.blueBox);
 
         ok1.setVisibility(View.INVISIBLE);
         ok2.setVisibility(View.INVISIBLE);
@@ -104,7 +106,7 @@ public class CreateEvent extends AppCompatActivity {
         cyanBX.setVisibility(View.INVISIBLE);
         greenBX.setVisibility(View.INVISIBLE);
         magentaBX.setVisibility(View.INVISIBLE);
-        yellowBX.setVisibility(View.INVISIBLE);
+        blueBX.setVisibility(View.INVISIBLE);
 
 
         TITLE = (EditText) findViewById(R.id.title_text);
@@ -118,7 +120,7 @@ public class CreateEvent extends AppCompatActivity {
         String _email = user.getEmail();
         String[] parts = _email.split("@");
         _email = parts[0];
-        currentcal = "hi";
+        currentcal = MyCalendars.currentcal;
         calendar = "hi";
 
 
@@ -138,10 +140,10 @@ public class CreateEvent extends AppCompatActivity {
                 cyanBX.setVisibility(View.INVISIBLE);
                 greenBX.setVisibility(View.INVISIBLE);
                 magentaBX.setVisibility(View.INVISIBLE);
-                yellowBX.setVisibility(View.INVISIBLE);
-                noDes.setVisibility(View.INVISIBLE);
+                blueBX.setVisibility(View.INVISIBLE);
                 pickTheColor.setVisibility(View.INVISIBLE);
                 Time.setVisibility(View.INVISIBLE);
+                noDes.setVisibility(View.INVISIBLE);
 
                 ok1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -196,7 +198,7 @@ public class CreateEvent extends AppCompatActivity {
                 cyanBX.setVisibility(View.INVISIBLE);
                 greenBX.setVisibility(View.INVISIBLE);
                 magentaBX.setVisibility(View.INVISIBLE);
-                yellowBX.setVisibility(View.INVISIBLE);
+                blueBX.setVisibility(View.INVISIBLE);
                 noDes.setVisibility(View.INVISIBLE);
                 pickTheColor.setVisibility(View.INVISIBLE);
 
@@ -227,7 +229,15 @@ public class CreateEvent extends AppCompatActivity {
                         String HOUR = String.valueOf(TP.getHour());
                         String MINUTE = String.valueOf(TP.getMinute());
 
-                        Time.setText(HOUR + ":" + MINUTE);
+                        if(TP.getMinute() < 10)
+                        {
+                            Time.setText(HOUR + ":0" + MINUTE);
+                        }
+                        else
+                        {
+
+                            Time.setText(HOUR + ":" + MINUTE);
+                        }
 
 
                     }
@@ -241,7 +251,7 @@ public class CreateEvent extends AppCompatActivity {
                 cyanBX.setVisibility(View.VISIBLE);
                 greenBX.setVisibility(View.VISIBLE);
                 magentaBX.setVisibility(View.VISIBLE);
-                yellowBX.setVisibility(View.VISIBLE);
+                blueBX.setVisibility(View.VISIBLE);
 
                     redBX.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -252,7 +262,7 @@ public class CreateEvent extends AppCompatActivity {
                     cyanBX.setChecked(false);
                     greenBX.setChecked(false);
                     magentaBX.setChecked(false);
-                    yellowBX.setChecked(false);
+                    blueBX.setChecked(false);
                     colorPicked = Color.RED;
                         }
                     });
@@ -268,7 +278,7 @@ public class CreateEvent extends AppCompatActivity {
                     redBX.setChecked(false);
                     greenBX.setChecked(false);
                     magentaBX.setChecked(false);
-                    yellowBX.setChecked(false);
+                    blueBX.setChecked(false);
                     colorPicked = Color.CYAN;
                         }
                     });
@@ -284,7 +294,7 @@ public class CreateEvent extends AppCompatActivity {
                     cyanBX.setChecked(false);
                     redBX.setChecked(false);
                     magentaBX.setChecked(false);
-                    yellowBX.setChecked(false);
+                    blueBX.setChecked(false);
                     colorPicked = Color.GREEN;
                         }
                     });
@@ -298,23 +308,23 @@ public class CreateEvent extends AppCompatActivity {
                     cyanBX.setChecked(false);
                     greenBX.setChecked(false);
                     redBX.setChecked(false);
-                    yellowBX.setChecked(false);
+                    blueBX.setChecked(false);
                     colorPicked = Color.MAGENTA;
 
                         }
                     });
 
 
-                    yellowBX.setOnClickListener(new View.OnClickListener() {
+                    blueBX.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                     Colorpicked.setVisibility(View.VISIBLE);
-                    Colorpicked.setText("Yellow");
+                    Colorpicked.setText("Blue");
                     cyanBX.setChecked(false);
                     greenBX.setChecked(false);
                     magentaBX.setChecked(false);
                     redBX.setChecked(false);
-                    colorPicked = Color.YELLOW;
+                    colorPicked = Color.BLUE;
                         }
                     });
 
@@ -413,7 +423,7 @@ public class CreateEvent extends AppCompatActivity {
            }
        });
 
-       databaseReference.child("users").child(_email).child("Calendars").child(currentcal).addValueEventListener(new ValueEventListener() {
+       databaseReference.child("users").child(_email).child("Events").child(currentcal).addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(DataSnapshot dataSnapshot) {
                // This method is called once with the initial value and again
@@ -422,9 +432,25 @@ public class CreateEvent extends AppCompatActivity {
                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
                for (DataSnapshot child: children) {
-                   OurEvent event = (OurEvent) child.getValue();
-                   ourEventArray.add(event);
-                   // arrayList = firebaselist;
+                   Iterable<DataSnapshot> children2 = child.getChildren();
+                for (DataSnapshot child2 : children2) {
+                    if (child2.getKey().toString().contains("color") && child2.exists()) {
+                        colors.add(child2.getValue(Integer.class));
+                    } else if (child2.getKey().toString().contains("data")) {
+                        datas.add(child2.getValue());
+                    } else if (child2.getKey().toString().contains("timeInMillis")) {
+                        timesinmillis.add(child2.getValue(Long.class));
+                    }
+
+                }
+                ourEventArray.clear();
+                    for (int x=0; x<colors.size(); x++) {
+                        NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x));
+                        ourEventArray.add(NewEvent); /////////////this is fucked
+                    }
+
+
+
                }
            }
 
@@ -447,7 +473,7 @@ public class CreateEvent extends AppCompatActivity {
         //String title = editText.getText().toString();
         //String p = privacy;
 
-        databaseReference.child("users").child(_email).child("Events").child(calendar).setValue(ourEventArray);
+        databaseReference.child("users").child(_email).child("Events").child(currentcal).setValue(ourEventArray);
         //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
         //databaseReference.push();
         Toast.makeText(this, "Event Saved...", Toast.LENGTH_SHORT).show();

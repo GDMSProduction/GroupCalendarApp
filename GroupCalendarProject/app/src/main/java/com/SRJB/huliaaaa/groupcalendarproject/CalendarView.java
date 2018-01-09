@@ -1,16 +1,13 @@
-package com.example.huliaaaa.groupcalendarproject;
+package com.SRJB.huliaaaa.groupcalendarproject;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,11 +19,9 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
-import com.example.huliaaaa.groupcalendarproject.OurEvent;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,16 +30,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.Vector;
 
 public class CalendarView extends AppCompatActivity
 {
@@ -92,13 +83,17 @@ public class CalendarView extends AppCompatActivity
     private DatabaseReference databaseReference;
     boolean exists;
     FirebaseAuth firebaseAuth;
-    String currentcal;
-    String calendartouse;
+    String currentcal = MyCalendars.currentcal;
+    //String calendartouse;
 
     int _color;
     long millis;
     Object _title;
+    Event NewEvent;
 
+    ArrayList<Integer> colors;
+    ArrayList<Object> datas;
+    ArrayList<Long> timesinmillis;
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
     Date fat;
@@ -107,6 +102,9 @@ public class CalendarView extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_view);
+        colors = new ArrayList<Integer>();
+        datas = new ArrayList<Object>();
+        timesinmillis = new ArrayList<Long>();
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
@@ -175,8 +173,9 @@ public class CalendarView extends AppCompatActivity
         String _email = user.getEmail();
         String[] parts = _email.split("@");
         _email = parts[0];
-        currentcal = "hi";
-        calendartouse = "hi";
+
+        //calendartouse = "hi";
+        _color = 0;
 
 
         arrayList1 = new ArrayList<String>();
@@ -311,6 +310,11 @@ public class CalendarView extends AppCompatActivity
                     listView1.setVisibility(View.VISIBLE);
 
                 }
+                else
+                {
+                    arrayList1.clear();
+                    adapter1.notifyDataSetChanged();
+                }
 
 
 
@@ -335,7 +339,7 @@ public class CalendarView extends AppCompatActivity
                 for (DataSnapshot child: children) {
                     if (child.getKey().toString().contains(currentcal))
                     {
-                        calendartouse = child.getValue().toString();
+                     //   calendartouse = child.getValue().toString();
                     }
                 }
             }
@@ -347,50 +351,59 @@ public class CalendarView extends AppCompatActivity
             }
         });
 
-       //databaseReference.child("users").child(_email).child("Events").addValueEventListener(new ValueEventListener() {
-       //    @Override
-       //    public void onDataChange(DataSnapshot dataSnapshot) {
-       //        // This method is called once with the initial value and again
-       //        // whenever data at this location is updated
+       databaseReference.child("users").child(_email).child("Events").addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               // This method is called once with the initial value and again
+               // whenever data at this location is updated
+               colors.clear();
+               timesinmillis.clear();
+               datas.clear();
+               Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-       //        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-       //        for (DataSnapshot child: children) {
-       //            Iterable<DataSnapshot> children2 = child.getChildren();
-       //            for (DataSnapshot child2: children2)
-       //            {
-       //                Iterable<DataSnapshot> children3 = child2.getChildren();
-       //                for (DataSnapshot child3: children3)
-       //                {
-       //                    if (child3.getKey().toString().contains("color"))
-       //                    {
-       //                        _color = (int) child3.getValue();
-       //                    }
-       //                    else if (child3.getKey().toString().contains("data"))
-       //                    {
-       //                        _title = child3.getValue().toString();
-       //                    }
-       //                    else if (child3.getKey().toString().contains("timeInMillis"))
-       //                    {
-       //                        millis = (long) child3.getValue();
-       //                    }
-       //                }
-       //                Event event = new Event(_color, millis, title);
-       //                compactCalendar.addEvent(event);
-       //            }
+               for (DataSnapshot child: children) {
+                   Iterable<DataSnapshot> children2 = child.getChildren();
+                   if (child.getKey().toString().contains(currentcal)) {
 
 
-       //        }
+                       for (DataSnapshot child2 : children2) {
 
 
-       //    }
+                           Iterable<DataSnapshot> children3 = child2.getChildren();
+                           for (DataSnapshot child3 : children3) {
+                               if (child3.getKey().toString().contains("color") && child3.exists()) {
+                                   colors.add(child3.getValue(Integer.class));
+                               } else if (child3.getKey().toString().contains("data")) {
+                                   datas.add(child3.getValue());
+                               } else if (child3.getKey().toString().contains("timeInMillis")) {
+                                   timesinmillis.add(child3.getValue(Long.class));
+                               }
+                           }
 
-       //    @Override
-       //    public void onCancelled(DatabaseError error) {
-       //        // Failed to read value
+                           compactCalendar.removeAllEvents();
 
-       //    }
-       //});
+                           for (int x=0; x<colors.size(); x++) {
+                               NewEvent = new Event(colors.get(x), timesinmillis.get(x), datas.get(x));
+                               compactCalendar.addEvent(NewEvent);
+                           }
+                       }
+
+                   }
+
+
+               }
+
+
+           }
+
+           @Override
+           public void onCancelled(DatabaseError error) {
+               // Failed to read value
+
+           }
+       });
+
+
 
         //onBtnClick2();
      //   onBtnClick3();
