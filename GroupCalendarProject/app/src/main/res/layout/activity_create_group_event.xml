@@ -74,8 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
-        android:layout_alignBaseline="@+id/ok12"
-        android:layout_alignBottom="@+id/ok12"
+        android:layout_alignBaseline="@+id/ok1"
+        android:layout_alignBottom="@+id/ok1"
         android:layout_centerHorizontal="true" />
 
     <DatePicker
@@ -113,7 +113,7 @@
         android:layout_alignStart="@+id/timepickd2" />
 
     <EditText
-        android:id="@+id/des_txt2"
+        android:id="@+id/des_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -124,7 +124,7 @@
         android:layout_marginTop="24dp" />
 
     <Button
-        android:id="@+id/ok12"
+        android:id="@+id/ok1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/add_btn2"
@@ -135,8 +135,8 @@
         android:id="@+id/ok22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ok12"
-        android:layout_alignStart="@+id/ok12"
+        android:layout_alignBottom="@+id/ok1"
+        android:layout_alignStart="@+id/ok1"
         android:text="OK" />
 
     <CheckBox
@@ -144,8 +144,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No Description"
-        android:layout_alignBaseline="@+id/des_txt2"
-        android:layout_alignBottom="@+id/des_txt2"
+        android:layout_alignBaseline="@+id/des_txt"
+        android:layout_alignBottom="@+id/des_txt"
         android:layout_toEndOf="@+id/add_btn2" />
 
     <RadioButton
@@ -158,7 +158,7 @@
         android:layout_alignStart="@+id/picktime_btn2" />
 
     <CheckBox
-        android:id="@+id/redBox2"
+        android:id="@+id/redBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/groupDatePicker"
@@ -166,29 +166,29 @@
         android:text="Red" />
 
     <CheckBox
-        android:id="@+id/cyanBox2"
+        android:id="@+id/cyanBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/colorpickd2"
-        android:layout_toEndOf="@+id/redBox2"
+        android:layout_toEndOf="@+id/redBox"
         android:text="Cyan" />
 
     <CheckBox
-        android:id="@+id/magentaBox2"
+        android:id="@+id/magentaBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cyanBox2"
-        android:layout_alignBottom="@+id/cyanBox2"
-        android:layout_toEndOf="@+id/cyanBox2"
+        android:layout_alignBaseline="@+id/cyanBox"
+        android:layout_alignBottom="@+id/cyanBox"
+        android:layout_toEndOf="@+id/cyanBox"
         android:text="Magenta" />
 
     <CheckBox
-        android:id="@+id/greenBox2"
+        android:id="@+id/greenBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/magentaBox2"
-        android:layout_alignBottom="@+id/magentaBox2"
-        android:layout_toEndOf="@+id/magentaBox2"
+        android:layout_alignBaseline="@+id/magentaBox"
+        android:layout_alignBottom="@+id/magentaBox"
+        android:layout_toEndOf="@+id/magentaBox"
         android:text="Green" />
 
     <CheckBox
@@ -196,7 +196,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/colorpickd2"
-        android:layout_toEndOf="@+id/greenBox2"
+        android:layout_toEndOf="@+id/greenBox"
         android:text="Yellow" />
 
     <ListView
@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:text="Who to invite?"
         android:textAlignment="center"
-        android:layout_below="@+id/redBox2"
+        android:layout_below="@+id/redBox"
         android:layout_alignStart="@+id/groupDatePicker" />
 
     <TextView

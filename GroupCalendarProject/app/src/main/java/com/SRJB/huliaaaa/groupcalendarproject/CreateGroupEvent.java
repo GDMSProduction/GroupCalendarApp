@@ -71,8 +71,8 @@ public class CreateGroupEvent extends AppCompatActivity {
         pickTheColor2 = (RadioButton) findViewById(R.id.pickColorBtn2);
         DP2 = (DatePicker ) findViewById(R.id.groupDatePicker);
         TP2 = (TimePicker) findViewById(R.id.groupTimePicker);
-        ok12 = (Button) findViewById(R.id.ok12);
-        ok22 = (Button) findViewById(R.id.ok22);
+        ok12 = (Button) findViewById(R.id.ok1);
+        ok22 = (Button) findViewById(R.id.ok2);
         TITLE2 = (EditText) findViewById(R.id.title_text2);
         DESCRIPTION2 = (EditText) findViewById(R.id.des_txt2);
         noDes2 = (CheckBox) findViewById(R.id.noDes_checkbox2);

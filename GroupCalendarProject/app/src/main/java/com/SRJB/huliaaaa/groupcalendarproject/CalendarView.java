@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.zip.CRC32;
 
 public class CalendarView extends AppCompatActivity
 {
@@ -84,6 +85,7 @@ public class CalendarView extends AppCompatActivity
     boolean exists;
     FirebaseAuth firebaseAuth;
     String currentcal = MyCalendars.currentcal;
+
     //String calendartouse;
 
     int _color;
@@ -153,6 +155,7 @@ public class CalendarView extends AppCompatActivity
         tv2 = (TextView) findViewById(R.id.textView14);
 
 
+
         exit = (Button) findViewById(R.id.exit);
         delete = (Button) findViewById(R.id.deleteBTN);
         ok = (CheckBox) findViewById(R.id.yesBTN);
@@ -188,6 +191,10 @@ public class CalendarView extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id)
             {
+                Intent intendo= new Intent(CalendarView.this, CreateeEvent.class);
+                startActivity(intendo);
+
+
 
                 for (int j = 0; j < ourEventsArray.size(); ++j)
                 {
@@ -198,82 +205,84 @@ public class CalendarView extends AppCompatActivity
                         other = arrayList1.get(k);
                         if (data.equals(other))
                         {
-                            nd = new Date(oe.getTimeInMillis());
-                           DateFormat  df = new SimpleDateFormat("MM/dd/yy    HH:mm");
+                           // Intent intend= new Intent(CalendarView.this, CreateEvent.class);
+                           // startActivity(intend);
+                         // nd = new Date(oe.getTimeInMillis());
+                         //DateFormat  df = new SimpleDateFormat("MM/dd/yy    HH:mm");
 
-                            //formatted value of current Date
-                            df.format(nd);
-
-
-
-                            compactCalendar.setVisibility(View.INVISIBLE);
-                            b2.setVisibility(View.INVISIBLE);
-                            editBtn.setVisibility(View.VISIBLE);
-                            eventTitle.setVisibility(View.VISIBLE);
-                            eventDT.setVisibility(View.VISIBLE);
-                            eventDes.setVisibility(View.VISIBLE);
-                            tv1.setVisibility(View.VISIBLE);
-                            tv2.setVisibility(View.VISIBLE);
-                            exit.setVisibility(View.VISIBLE);
-                            listView1.setVisibility(View.INVISIBLE);
-                            eventTitle.setText(oe.getData().toString());
-                            eventDes.setText(oe.getDescription().toString());
-                            eventDT.setText(df.format(nd));
-                            delete.setVisibility(View.VISIBLE);
-
-                            delete.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    ok.setVisibility(View.VISIBLE);
-                                    ays.setVisibility(View.VISIBLE);
-                                    no.setVisibility(View.VISIBLE);
-                                    editBtn.setVisibility(View.INVISIBLE);
-                                    eventTitle.setVisibility(View.INVISIBLE);
-                                    eventDT.setVisibility(View.INVISIBLE);
-                                    eventDes.setVisibility(View.INVISIBLE);
-                                    tv1.setVisibility(View.INVISIBLE);
-                                    tv2.setVisibility(View.INVISIBLE);
-                                    exit.setVisibility(View.INVISIBLE);
-
-                                        ok.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-
-                                        compactCalendar.setVisibility(View.VISIBLE);
-                                        b2.setVisibility(View.VISIBLE);
-                                        compactCalendar.removeEvents(oe.getTimeInMillis());
-                                                ok.setVisibility(View.INVISIBLE);
-                                                ays.setVisibility(View.INVISIBLE);
-                                                no.setVisibility(View.INVISIBLE);
-                                                ok.setChecked(false);
-                                                delete.setVisibility(View.INVISIBLE);
-                                            }
-                                        });
+                         // //formatted value of current Date
+                         // df.format(nd);
 
 
 
-                                        no.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
+                         // compactCalendar.setVisibility(View.INVISIBLE);
+                         // b2.setVisibility(View.INVISIBLE);
+                         // editBtn.setVisibility(View.VISIBLE);
+                         // eventTitle.setVisibility(View.VISIBLE);
+                         // eventDT.setVisibility(View.VISIBLE);
+                         // eventDes.setVisibility(View.VISIBLE);
+                         // tv1.setVisibility(View.VISIBLE);
+                         // tv2.setVisibility(View.VISIBLE);
+                         // exit.setVisibility(View.VISIBLE);
+                         // listView1.setVisibility(View.INVISIBLE);
+                         // eventTitle.setText(oe.getData().toString());
+                         // eventDes.setText(oe.getDescription().toString());
+                         // eventDT.setText(df.format(nd));
+                         // delete.setVisibility(View.VISIBLE);
 
-                                        ok.setVisibility(View.INVISIBLE);
-                                        ays.setVisibility(View.INVISIBLE);
-                                        no.setVisibility(View.INVISIBLE);
-                                        editBtn.setVisibility(View.VISIBLE);
-                                        eventTitle.setVisibility(View.VISIBLE);
-                                        eventDT.setVisibility(View.VISIBLE);
-                                        eventDes.setVisibility(View.VISIBLE);
-                                        tv1.setVisibility(View.VISIBLE);
-                                        tv2.setVisibility(View.VISIBLE);
-                                        exit.setVisibility(View.VISIBLE);
-                                                delete.setVisibility(View.INVISIBLE);
-                                                no.setChecked(false);
-                                            }
-                                        });
+                         // delete.setOnClickListener(new View.OnClickListener() {
+                         //     @Override
+                         //     public void onClick(View v) {
+                         //         ok.setVisibility(View.VISIBLE);
+                         //         ays.setVisibility(View.VISIBLE);
+                         //         no.setVisibility(View.VISIBLE);
+                         //         editBtn.setVisibility(View.INVISIBLE);
+                         //         eventTitle.setVisibility(View.INVISIBLE);
+                         //         eventDT.setVisibility(View.INVISIBLE);
+                         //         eventDes.setVisibility(View.INVISIBLE);
+                         //         tv1.setVisibility(View.INVISIBLE);
+                         //         tv2.setVisibility(View.INVISIBLE);
+                         //         exit.setVisibility(View.INVISIBLE);
+
+                         //             ok.setOnClickListener(new View.OnClickListener() {
+                         //                 @Override
+                         //                 public void onClick(View v) {
+
+                         //             compactCalendar.setVisibility(View.VISIBLE);
+                         //             b2.setVisibility(View.VISIBLE);
+                         //             compactCalendar.removeEvents(oe.getTimeInMillis());
+                         //                     ok.setVisibility(View.INVISIBLE);
+                         //                     ays.setVisibility(View.INVISIBLE);
+                         //                     no.setVisibility(View.INVISIBLE);
+                         //                     ok.setChecked(false);
+                         //                     delete.setVisibility(View.INVISIBLE);
+                         //                 }
+                         //             });
 
 
-                                }
-                            });
+
+                         //             no.setOnClickListener(new View.OnClickListener() {
+                         //                 @Override
+                         //                 public void onClick(View v) {
+
+                         //             ok.setVisibility(View.INVISIBLE);
+                         //             ays.setVisibility(View.INVISIBLE);
+                         //             no.setVisibility(View.INVISIBLE);
+                         //             editBtn.setVisibility(View.VISIBLE);
+                         //             eventTitle.setVisibility(View.VISIBLE);
+                         //             eventDT.setVisibility(View.VISIBLE);
+                         //             eventDes.setVisibility(View.VISIBLE);
+                         //             tv1.setVisibility(View.VISIBLE);
+                         //             tv2.setVisibility(View.VISIBLE);
+                         //             exit.setVisibility(View.VISIBLE);
+                         //                     delete.setVisibility(View.INVISIBLE);
+                         //                     no.setChecked(false);
+                         //                 }
+                         //             });
+
+
+                         //     }
+                         // });
 
 
 
@@ -427,7 +436,7 @@ public class CalendarView extends AppCompatActivity
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inten= new Intent(CalendarView.this, CreateEvent.class);
+                Intent inten= new Intent(CalendarView.this, CreateeEvent.class);
                 startActivity(inten);
             }
         });
