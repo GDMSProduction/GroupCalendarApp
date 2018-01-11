@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,26 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.LoginPage">
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.CalendarPage" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.FriendsPage" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.MainMenu" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.SettingsPage" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.MyCalendars" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.ThemesPage" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.CalendarView" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.CreateEvent" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.GroupCalendars" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.AddFriendsToGroupCalendar" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.GroupCalendarView" />
-        <activity android:name="com.SRJB.huliaaaa.groupcalendarproject.CreateGroupEvent"></activity>
+        <activity android:name=".CalendarPage" />
+        <activity android:name=".FriendsPage" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".SettingsPage" />
+        <activity android:name=".MyCalendars" />
+        <activity android:name=".ThemesPage" />
+        <activity android:name=".CalendarView" />
+        <activity android:name=".CreateEvent" />
+        <activity android:name=".GroupCalendars" />
+        <activity android:name=".AddFriendsToGroupCalendar" />
+        <activity android:name=".GroupCalendarView" />
+        <activity android:name=".CreateGroupEvent" />
+        <activity android:name=".EditEvent"></activity>
     </application>
 
 </manifest>

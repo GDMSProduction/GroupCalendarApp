@@ -84,6 +84,7 @@ public class CalendarView extends AppCompatActivity
     boolean exists;
     FirebaseAuth firebaseAuth;
     String currentcal = MyCalendars.currentcal;
+    public static String currenteventdata;
     //String calendartouse;
 
     int _color;
@@ -184,104 +185,108 @@ public class CalendarView extends AppCompatActivity
         listView1.setAdapter(adapter1);
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id)
             {
+                currenteventdata = listView1.getItemAtPosition(position).toString();
+                saveCurrentEvent();
+                Intent intendo= new Intent(CalendarView.this, EditEvent.class);
+                startActivity(intendo);
+           // for (int j = 0; j < ourEventsArray.size(); ++j)
+           // {
+           //      data = ourEventsArray.get(j).getData().toString();
+           //      oe = ourEventsArray.get(j);
+           //     for (int k =0; k < arrayList1.size(); ++k)
+           //     {
+           //         other = arrayList1.get(k);
+           //         if (data.equals(other))
+           //         {
+           //             nd = new Date(oe.getTimeInMillis());
+           //            DateFormat  df = new SimpleDateFormat("MM/dd/yy    HH:mm");
 
-                for (int j = 0; j < ourEventsArray.size(); ++j)
-                {
-                     data = ourEventsArray.get(j).getData().toString();
-                     oe = ourEventsArray.get(j);
-                    for (int k =0; k < arrayList1.size(); ++k)
-                    {
-                        other = arrayList1.get(k);
-                        if (data.equals(other))
-                        {
-                            nd = new Date(oe.getTimeInMillis());
-                           DateFormat  df = new SimpleDateFormat("MM/dd/yy    HH:mm");
-
-                            //formatted value of current Date
-                            df.format(nd);
-
-
-
-                            compactCalendar.setVisibility(View.INVISIBLE);
-                            b2.setVisibility(View.INVISIBLE);
-                            editBtn.setVisibility(View.VISIBLE);
-                            eventTitle.setVisibility(View.VISIBLE);
-                            eventDT.setVisibility(View.VISIBLE);
-                            eventDes.setVisibility(View.VISIBLE);
-                            tv1.setVisibility(View.VISIBLE);
-                            tv2.setVisibility(View.VISIBLE);
-                            exit.setVisibility(View.VISIBLE);
-                            listView1.setVisibility(View.INVISIBLE);
-                            eventTitle.setText(oe.getData().toString());
-                            eventDes.setText(oe.getDescription().toString());
-                            eventDT.setText(df.format(nd));
-                            delete.setVisibility(View.VISIBLE);
-
-                            delete.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    ok.setVisibility(View.VISIBLE);
-                                    ays.setVisibility(View.VISIBLE);
-                                    no.setVisibility(View.VISIBLE);
-                                    editBtn.setVisibility(View.INVISIBLE);
-                                    eventTitle.setVisibility(View.INVISIBLE);
-                                    eventDT.setVisibility(View.INVISIBLE);
-                                    eventDes.setVisibility(View.INVISIBLE);
-                                    tv1.setVisibility(View.INVISIBLE);
-                                    tv2.setVisibility(View.INVISIBLE);
-                                    exit.setVisibility(View.INVISIBLE);
-
-                                        ok.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-
-                                        compactCalendar.setVisibility(View.VISIBLE);
-                                        b2.setVisibility(View.VISIBLE);
-                                        compactCalendar.removeEvents(oe.getTimeInMillis());
-                                                ok.setVisibility(View.INVISIBLE);
-                                                ays.setVisibility(View.INVISIBLE);
-                                                no.setVisibility(View.INVISIBLE);
-                                                ok.setChecked(false);
-                                                delete.setVisibility(View.INVISIBLE);
-                                            }
-                                        });
+           //             //formatted value of current Date
+           //             df.format(nd);
 
 
 
-                                        no.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
+           //             compactCalendar.setVisibility(View.INVISIBLE);
+           //             b2.setVisibility(View.INVISIBLE);
+           //             editBtn.setVisibility(View.VISIBLE);
+           //             eventTitle.setVisibility(View.VISIBLE);
+           //             eventDT.setVisibility(View.VISIBLE);
+           //             eventDes.setVisibility(View.VISIBLE);
+           //             tv1.setVisibility(View.VISIBLE);
+           //             tv2.setVisibility(View.VISIBLE);
+           //             exit.setVisibility(View.VISIBLE);
+           //             listView1.setVisibility(View.INVISIBLE);
+           //             eventTitle.setText(oe.getData().toString());
+           //             eventDes.setText(oe.getDescription().toString());
+           //             eventDT.setText(df.format(nd));
+           //             delete.setVisibility(View.VISIBLE);
 
-                                        ok.setVisibility(View.INVISIBLE);
-                                        ays.setVisibility(View.INVISIBLE);
-                                        no.setVisibility(View.INVISIBLE);
-                                        editBtn.setVisibility(View.VISIBLE);
-                                        eventTitle.setVisibility(View.VISIBLE);
-                                        eventDT.setVisibility(View.VISIBLE);
-                                        eventDes.setVisibility(View.VISIBLE);
-                                        tv1.setVisibility(View.VISIBLE);
-                                        tv2.setVisibility(View.VISIBLE);
-                                        exit.setVisibility(View.VISIBLE);
-                                                delete.setVisibility(View.INVISIBLE);
-                                                no.setChecked(false);
-                                            }
-                                        });
+           //             delete.setOnClickListener(new View.OnClickListener() {
+           //                 @Override
+           //                 public void onClick(View v) {
+           //                     ok.setVisibility(View.VISIBLE);
+           //                     ays.setVisibility(View.VISIBLE);
+           //                     no.setVisibility(View.VISIBLE);
+           //                     editBtn.setVisibility(View.INVISIBLE);
+           //                     eventTitle.setVisibility(View.INVISIBLE);
+           //                     eventDT.setVisibility(View.INVISIBLE);
+           //                     eventDes.setVisibility(View.INVISIBLE);
+           //                     tv1.setVisibility(View.INVISIBLE);
+           //                     tv2.setVisibility(View.INVISIBLE);
+           //                     exit.setVisibility(View.INVISIBLE);
+
+           //                         ok.setOnClickListener(new View.OnClickListener() {
+           //                             @Override
+           //                             public void onClick(View v) {
+
+           //                         compactCalendar.setVisibility(View.VISIBLE);
+           //                         b2.setVisibility(View.VISIBLE);
+           //                         compactCalendar.removeEvents(oe.getTimeInMillis());
+           //                                 ok.setVisibility(View.INVISIBLE);
+           //                                 ays.setVisibility(View.INVISIBLE);
+           //                                 no.setVisibility(View.INVISIBLE);
+           //                                 ok.setChecked(false);
+           //                                 delete.setVisibility(View.INVISIBLE);
+           //                             }
+           //                         });
 
 
-                                }
-                            });
+
+           //                         no.setOnClickListener(new View.OnClickListener() {
+           //                             @Override
+           //                             public void onClick(View v) {
+
+           //                         ok.setVisibility(View.INVISIBLE);
+           //                         ays.setVisibility(View.INVISIBLE);
+           //                         no.setVisibility(View.INVISIBLE);
+           //                         editBtn.setVisibility(View.VISIBLE);
+           //                         eventTitle.setVisibility(View.VISIBLE);
+           //                         eventDT.setVisibility(View.VISIBLE);
+           //                         eventDes.setVisibility(View.VISIBLE);
+           //                         tv1.setVisibility(View.VISIBLE);
+           //                         tv2.setVisibility(View.VISIBLE);
+           //                         exit.setVisibility(View.VISIBLE);
+           //                                 delete.setVisibility(View.INVISIBLE);
+           //                                 no.setChecked(false);
+           //                             }
+           //                         });
+
+
+           //                 }
+           //             });
 
 
 
-                        }
-                }
+           //         }
+           // }
 
 
-                }
+           // }
 
 
             }
@@ -674,5 +679,20 @@ public void onExitClick()
  //         }
  //     });
  // }
+
+    private void saveCurrentEvent()
+    {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String _email = user.getEmail();
+        String[] parts = _email.split("@");
+        _email = parts[0];
+        //String title = editText.getText().toString();
+        //String p = privacy;
+
+        databaseReference.child("users").child(_email).child("CurrentEvent").setValue(currenteventdata);
+        //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
+        //databaseReference.push();
+        //Toast.makeText(this, "Calendar Saved...", Toast.LENGTH_SHORT).show();
+    }
 
 }
