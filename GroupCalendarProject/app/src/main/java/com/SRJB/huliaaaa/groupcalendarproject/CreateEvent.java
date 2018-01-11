@@ -64,6 +64,7 @@ public class CreateEvent extends AppCompatActivity {
     ArrayList<Integer> colors;
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
+    ArrayList<Object> description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class CreateEvent extends AppCompatActivity {
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();
         timesinmillis = new ArrayList<Long>();
+        description = new ArrayList<Object>();
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Event Creation");
 
@@ -346,6 +348,23 @@ public class CreateEvent extends AppCompatActivity {
                     DESCRIPTION.setError(getString(R.string.error_field_required));
 
                 }
+                else ///// allows for adding events with descriptions...
+                {
+                    Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                    long millisecondsS = datee.getTime();
+
+                    Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                    ourEventArray.add(Ourevent);
+                    event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                    saveEventInfo();
+
+                    DESCRIPTION.setText("");
+                    pickTheTime.setChecked(false);
+                    pickTheDate.setChecked(false);
+                    TITLE.setText("");
+
+                    finish();
+                }
                 }
                 else if (pickTheColor.isChecked() == false)
                 {
@@ -409,7 +428,8 @@ public class CreateEvent extends AppCompatActivity {
 
                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-               for (DataSnapshot child: children) {
+               for (DataSnapshot child: children)
+               {
                    if (child.getKey().toString().contains("CurrentCal"))
                    currentcal = child.getValue().toString();
                    // arrayList = firebaselist;
@@ -434,19 +454,37 @@ public class CreateEvent extends AppCompatActivity {
                for (DataSnapshot child: children) {
                    Iterable<DataSnapshot> children2 = child.getChildren();
                 for (DataSnapshot child2 : children2) {
-                    if (child2.getKey().toString().contains("color") && child2.exists()) {
+                    if (child2.getKey().toString().contains("color") && child2.exists())
+                    {
                         colors.add(child2.getValue(Integer.class));
-                    } else if (child2.getKey().toString().contains("data")) {
+                    }
+                    else if (child2.getKey().toString().contains("data"))
+                    {
                         datas.add(child2.getValue());
-                    } else if (child2.getKey().toString().contains("timeInMillis")) {
+                    }
+                    else if (child2.getKey().toString().contains("timeInMillis"))
+                    {
                         timesinmillis.add(child2.getValue(Long.class));
+                    }
+                    else if (child2.getKey().toString().contains("description") && child2.exists())
+                    {
+                        //description.add(child2.getValue());
                     }
 
                 }
                 ourEventArray.clear();
-                    for (int x=0; x<colors.size(); x++) {
-                        NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x));
-                        ourEventArray.add(NewEvent); /////////////this is fucked
+                    for (int x=0; x<colors.size(); x++)
+                    {
+                        if (description.size() != 0)
+                        {
+                            NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x), description.get(x));
+                            ourEventArray.add(NewEvent);
+                        }
+                        else
+                        {
+                            NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x));
+                            ourEventArray.add(NewEvent);
+                        }
                     }
 
 
