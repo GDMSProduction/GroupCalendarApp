@@ -55,7 +55,7 @@
         android:inputType="textPersonName"
         android:visibility="visible"
         android:layout_below="@+id/datepickd2"
-        android:layout_alignStart="@+id/datepickd2" />
+        android:layout_toEndOf="@+id/pickColorBtn2" />
 
     <EditText
         android:id="@+id/datepickd2"
@@ -65,7 +65,7 @@
         android:inputType="textPersonName"
         android:visibility="visible"
         android:layout_below="@+id/title_text2"
-        android:layout_toStartOf="@+id/blueBox" />
+        android:layout_alignStart="@+id/timepickd2" />
 
     <Button
         android:id="@+id/add_btn2"

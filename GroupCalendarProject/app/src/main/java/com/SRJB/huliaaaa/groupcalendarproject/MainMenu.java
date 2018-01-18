@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,16 +26,15 @@ public class MainMenu extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private TextView tvEmail;
     Menu damenu;
-
+    public static String currenttheme;
     boolean exists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
 
-     final ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Main Menu");
+
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -42,7 +42,53 @@ public class MainMenu extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         //saveUserInfo();
 
+        String _email = user.getEmail();
+        String[] parts = _email.split("@");
+        _email = parts[0];
+        final String _child = "Current Theme";
+        currenttheme = "";
 
+        databaseReference.child("users").child(_email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                for (DataSnapshot child: children) {
+                    if (child.getKey().contains(_child))
+                    {
+                        currenttheme = child.getValue().toString();
+                        if (currenttheme.contains("Dark")) {
+                            setTheme(R.style.TestTheme1);
+
+                        } else if (currenttheme.contains("Light")) {
+                            setTheme(R.style.AppTheme);
+                        }
+
+                        setContentView(R.layout.activity_main_menu);
+                        final ActionBar actionBar = getSupportActionBar();
+                        actionBar.setTitle("Main Menu");
+
+                    }
+                    else
+                    {
+                        setContentView(R.layout.activity_main_menu);
+                        final ActionBar actionBar = getSupportActionBar();
+                        actionBar.setTitle("Main Menu");
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar4);
 
       //  setSupportActionBar(toolbar);
@@ -108,14 +154,14 @@ public class MainMenu extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_Calendars) {
-            Intent nextpagge = new Intent(MainMenu.this,CalendarPage.class);
+            Intent nextpagge = new Intent(MainMenu.this,MyCalendars.class);
             startActivity(nextpagge);
 
         }
         if (id == R.id.action_Friends)
         {
             Intent nextpagge = new Intent(MainMenu.this,FriendsPage.class);
-            startActivity(nextpagge);
+            //startActivity(nextpagge);
 
         }
         if (id == R.id.action_Themes)
@@ -137,7 +183,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void NextPage(View V)
     {
-        Intent nextpage = new Intent(MainMenu.this, CalendarPage.class);
+        Intent nextpage = new Intent(MainMenu.this, MyCalendars.class);
         startActivity(nextpage);
     }
     public void NextPageFriends(View V)

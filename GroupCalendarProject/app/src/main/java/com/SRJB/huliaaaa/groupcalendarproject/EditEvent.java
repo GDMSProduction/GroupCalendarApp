@@ -76,9 +76,18 @@ public class EditEvent extends AppCompatActivity {
     ArrayList<Integer> colors;
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
+    String _currenttheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Dark")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Light")) {
+
+            setTheme(R.style.AppTheme);
+        }
         setContentView(R.layout.activity_edit_event);
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();

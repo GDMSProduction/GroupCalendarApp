@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/primary_text_material_dark</color>
-    <color name="colorPrimaryDark">#303f9f</color>
-    <color name="colorAccent">#5ef8e6</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#0ffbdf</color>
     <color name="white">#FFFFFF</color>
-    <color name="red">#f00</color>
+    <color name="red">#ff0000</color>
     <color name="blue">#009de0</color>
     <color name="black">#000000</color>
-    <color name="off_white">#f1f5f7</color>
+    <color name="off_white">#01ed8f</color>
     <color name="blue_selector">#00aeea</color>
     <color name="red_negative_progress">#ff3333</color>
 
@@ -18,8 +18,18 @@
     <color name="background">#E0E0E0</color>
     <color name="grey">#757575</color>
     <color name="accent_material_dark">#6af7db</color>
-    <color name="primary_text_material_light">#defab1e9</color>
+    <color name="primary_text_material_light">#de6fff15</color>
     <color name="foreground_material_dark">#b93030</color>
     <color name="secondary_text_material_dark">#b3b66cf4</color>
     <color name="primary_text_material_dark">?attr/colorAccent</color>
+    <color name="darkgrey">#3d3d3d</color>
+    <color name="lessblack">#a03c3c3c</color>
+    <color name="greeniblue">#01ed8f</color>
+    <color name="color_greyerg">#3a89d7</color>
+    <color name="greeniboi">#de6fff15</color>
+    <color name="foreground_material_light">#ff0b0b</color>
+    <color name="redesfa">#dc1f1f</color>
+    <color name="asdasdasdasdad">#9be7c4</color>
+    <color name="lessdarkgrey">#686868</color>
+    <color name="uglee">#d6c7c7</color>
 </resources>

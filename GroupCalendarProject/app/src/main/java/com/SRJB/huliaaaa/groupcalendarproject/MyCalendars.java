@@ -46,10 +46,19 @@ public class MyCalendars extends AppCompatActivity {
     private DatabaseReference databaseReference;
     boolean exists;
     public static String currentcal;
+    String _currenttheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Dark")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Light")) {
+
+            setTheme(R.style.AppTheme);
+        }
         setContentView(R.layout.activity_my_calendars);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("My Calendars");
@@ -290,13 +299,13 @@ public void clicka()
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_Calendars) {
             Intent nextpagge = new Intent(MyCalendars.this,CalendarPage.class);
-            startActivity(nextpagge);
+            //startActivity(nextpagge);
             return true;
         }
         if (id == R.id.action_Friends)
         {
             Intent nextpagge = new Intent(MyCalendars.this,FriendsPage.class);
-            startActivity(nextpagge);
+            //startActivity(nextpagge);
             return true;
         }
         if (id == R.id.action_Themes)

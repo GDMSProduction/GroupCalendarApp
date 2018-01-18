@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.SRJB.huliaaaa.groupcalendarproject.AddFriendsToGroupCalendar">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="Who would you like to add?"
-        android:textSize="24sp" />
-
     <ListView
         android:id="@+id/friendsList"
         android:layout_width="match_parent"

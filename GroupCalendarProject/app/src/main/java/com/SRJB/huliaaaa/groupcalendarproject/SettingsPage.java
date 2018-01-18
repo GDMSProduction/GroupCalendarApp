@@ -22,12 +22,20 @@ public class SettingsPage extends AppCompatActivity {
     Button signOut;
    // private static final String TAG = "LoginPage";
     FirebaseUser user;
-
+    String _currenttheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Dark")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Light")) {
+
+            setTheme(R.style.AppTheme);
+        }
         setContentView(R.layout.activity_settings_page);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Settings");
@@ -87,14 +95,14 @@ public class SettingsPage extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_Calendars) {
-            Intent nextpagge = new Intent(SettingsPage.this,CalendarPage.class);
+            Intent nextpagge = new Intent(SettingsPage.this,MyCalendars.class);
             startActivity(nextpagge);
             return true;
         }
         if (id == R.id.action_Friends)
         {
             Intent nextpagge = new Intent(SettingsPage.this,FriendsPage.class);
-            startActivity(nextpagge);
+            //startActivity(nextpagge);
             return true;
         }
         if (id == R.id.action_Themes)
@@ -106,11 +114,22 @@ public class SettingsPage extends AppCompatActivity {
         if (id == R.id.action_settings)
         {
             Intent nextpagge = new Intent(SettingsPage.this,SettingsPage.class);
-            startActivity(nextpagge);
+            //startActivity(nextpagge);
             return true;
         }
 
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (user == null)
+        {
+            Intent nextpagge = new Intent(SettingsPage.this,LoginPage.class);
+        }
+        else
+            super.onBackPressed();
+
     }
 }

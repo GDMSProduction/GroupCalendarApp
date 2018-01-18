@@ -65,10 +65,18 @@ public class CreateEvent extends AppCompatActivity {
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
     ArrayList<Object> description;
-
+    String _currenttheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Dark")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Light")) {
+
+            setTheme(R.style.AppTheme);
+        }
         setContentView(R.layout.activity_create_event);
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();
@@ -408,13 +416,13 @@ public class CreateEvent extends AppCompatActivity {
                     //startActivity(intent);
 
 
-
                     DESCRIPTION.setText("");
                     pickTheTime.setChecked(false);
                     pickTheDate.setChecked(false);
                     TITLE.setText("");
 
                     finish();
+
                 }
 
             }
