@@ -10,10 +10,19 @@
     tools:layout_editor_absoluteX="0dp">
 
 
+    <ListView
+        android:id="@+id/eventList"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/datetimeBox"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/createEvent" />
+
     <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/compactcalendar_view"
-        android:layout_width="368dp"
-        android:layout_height="245dp"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:visibility="visible"
@@ -40,15 +49,6 @@
         android:layout_marginTop="11dp"
         android:layout_below="@+id/descriptionBox"
         android:layout_alignParentEnd="true" />
-
-    <ListView
-        android:id="@+id/eventList"
-        android:layout_width="250dp"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/datetimeBox"
-        android:layout_below="@+id/compactcalendar_view" />
 
     <TextView
         android:id="@+id/titlebox"

@@ -7,5 +7,11 @@
     tools:context="com.SRJB.huliaaaa.groupcalendarproject.ThemesPage">
 
 
-
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coming Soon!"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="247dp" />
 </android.support.constraint.ConstraintLayout>

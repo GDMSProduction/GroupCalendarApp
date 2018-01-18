@@ -65,7 +65,7 @@
         android:inputType="textPersonName"
         android:visibility="visible"
         android:layout_below="@+id/title_text2"
-        android:layout_toStartOf="@+id/blueBox" />
+        android:layout_alignEnd="@+id/title_text2" />
 
     <Button
         android:id="@+id/add_btn2"

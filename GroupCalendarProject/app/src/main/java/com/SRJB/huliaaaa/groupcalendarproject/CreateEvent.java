@@ -514,6 +514,12 @@ public class CreateEvent extends AppCompatActivity {
         databaseReference.child("users").child(_email).child("Events").child(currentcal).setValue(ourEventArray);
         //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
         //databaseReference.push();
+
+        //int j = 0;
+        //for (int i = 0; i <= ourEventArray.size(); i++)
+        //{
+        //    databaseReference.child("users").child(_email).child("Events").child(currentcal).child(Integer.toString(i)).setValue(ourEventArray.get(i));
+        //}
         Toast.makeText(this, "Event Saved...", Toast.LENGTH_SHORT).show();
     }
 

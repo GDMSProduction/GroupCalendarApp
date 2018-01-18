@@ -95,6 +95,7 @@ public class CalendarView extends AppCompatActivity
     ArrayList<Integer> colors;
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
+    public static Date clickedDate;
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
     Date fat;
@@ -304,6 +305,7 @@ public class CalendarView extends AppCompatActivity
                 arrayList1.clear();
                 Context context = getApplicationContext();
                 events = compactCalendar.getEvents(dateClicked);
+                clickedDate = dateClicked;
                 if (events.size() > 0)
                 {
                     for (int i = 0; i < events.size(); ++i)

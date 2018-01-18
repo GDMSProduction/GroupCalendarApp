@@ -47,6 +47,10 @@ public class MyCalendars extends AppCompatActivity {
     boolean exists;
     public static String currentcal;
 
+    Boolean clicked = false;
+    public static String result;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +136,7 @@ public class MyCalendars extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 currentcal = listView.getItemAtPosition(i).toString();
+                clicked = true;
                 saveCurrentCalendar();
                 Intent intent = new Intent(MyCalendars.this, CalendarView.class);
                 startActivity(intent);
@@ -214,7 +219,7 @@ public class MyCalendars extends AppCompatActivity {
                  }
                  else if (rb1.isChecked())
                  {
-                     String result = editText.getText().toString() + " (Public)";
+                     result = editText.getText().toString() + " (Public)";
                      myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      privacy = "Public";
@@ -225,7 +230,7 @@ public class MyCalendars extends AppCompatActivity {
 
                  else if (rb2.isChecked())
                  {
-                     String result = editText.getText().toString() + " (Private)";
+                     result = editText.getText().toString() + " (Private)";
                      myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      privacy = "Private";
@@ -236,7 +241,7 @@ public class MyCalendars extends AppCompatActivity {
 
                  else
                  {
-                     String result = editText.getText().toString();
+                     result = editText.getText().toString();
                      myCalendarsList.add(result);
                      adapter.notifyDataSetChanged();
                      saveCalendarInfo();
@@ -247,7 +252,10 @@ public class MyCalendars extends AppCompatActivity {
                  rb1.setChecked(true);
                  rb2.setChecked(false);
 
-
+                 currentcal = result;
+                 saveCurrentCalendar();
+                 Intent intent = new Intent(MyCalendars.this, CalendarView.class);
+                 startActivity(intent);
              }
          });
      }
@@ -339,6 +347,11 @@ public void clicka()
         _email = parts[0];
         //String title = editText.getText().toString();
         //String p = privacy;
+
+        if (clicked == false)
+        {
+            currentcal = result;
+        }
 
         databaseReference.child("users").child(_email).child("CurrentCal").setValue(currentcal);
         //databaseReference.child("users").child(user.getUid()).child("Calendars").child(title).child("Privacy").setValue(privacy);
