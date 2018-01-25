@@ -71,10 +71,11 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
         android:layout_alignBaseline="@+id/ok1"
         android:layout_alignBottom="@+id/ok1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Add"
+        android:translationY="20dp" />
 
     <DatePicker
         android:id="@+id/datePicker2"
@@ -121,15 +122,18 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/add_btn"
         android:layout_below="@+id/datePicker2"
-        android:text="OK" />
+        android:text="OK"
+        android:translationY="20dp" />
 
     <Button
         android:id="@+id/ok2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ok1"
-        android:layout_alignStart="@+id/ok1"
-        android:text="OK" />
+        android:layout_alignBaseline="@+id/add_btn"
+        android:layout_alignBottom="@+id/add_btn"
+        android:layout_alignStart="@+id/add_btn"
+        android:text="OK"
+        android:translationY="20dp" />
 
     <CheckBox
         android:id="@+id/noDes_checkbox"
@@ -192,5 +196,33 @@
         android:layout_alignBottom="@+id/greenBox"
         android:layout_toEndOf="@+id/greenBox"
         android:text="Blue" />
+
+    <RadioButton
+        android:id="@+id/repeatDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Repeat Daily"
+        android:layout_below="@+id/timePicker2"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:id="@+id/repeatWeekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/repeatDaily"
+        android:layout_alignBottom="@+id/repeatDaily"
+        android:layout_toStartOf="@+id/repeatMonthly"
+        android:text="Repeat Weekly"
+        android:translationX="-10dp" />
+
+    <RadioButton
+        android:id="@+id/repeatMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repeat Monthly"
+        android:layout_alignBaseline="@+id/repeatWeekly"
+        android:layout_alignBottom="@+id/repeatWeekly"
+        android:layout_toEndOf="@+id/neweventTxt" />
 
 </android.widget.RelativeLayout>

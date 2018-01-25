@@ -30,4 +30,50 @@
 
     <style name="the" parent="MyTh3me" />
 
+    <style name="TestTheme1" parent="Theme.AppCompat" >
+        <item name="android:colorBackground">@color/lessdarkgrey</item>
+        <item name="colorPrimary">@color/lessblack</item>
+        <item name="android:textColorSecondary">@color/greeniblue</item>
+        <item name="android:textColorSecondaryInverse">@color/greeniboi</item>
+        <item name="android:textColorPrimary">@color/greeniblue</item>
+        <item name="android:textColorPrimaryInverse">@color/greeniboi</item>
+        <item name="colorAccent">@color/asdasdasdasdad</item>
+        <item name="android:statusBarColor">@color/lessblack</item>
+        <item name="android:colorForeground">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/lessblack</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="poob" parent="Theme.AppCompat.Light" >
+        <item name="colorPrimary">@color/uglee</item>
+    </style>
+
+    <style name="PurpDarkBoi" parent="TestTheme1" >
+        <item name="android:textColorPrimary">@color/pinkiboi</item>
+        <item name="android:textColorSecondary">@color/pinkiboi</item>
+        <item name="android:textColorPrimaryInverse">@color/pinkiboi</item>
+        <item name="android:textColorSecondaryInverse">@color/pinkiboi</item>
+        <item name="colorAccent">@color/pinkiboi</item>
+        <item name="android:colorForeground">@color/pinkiboi</item>
+        <item name="android:actionBarTheme">@color/pinkiboi</item>
+    </style>
+
+    <style name="yellowpeeboi" parent="AppTheme" />
+
+    <style name="PurpDarkBoi.yellowpeeboi" parent="PurpDarkBoi" >
+        <item name="colorAccent">@color/yelliboi</item>
+        <item name="android:colorForeground">@color/yelliboi</item>
+        <item name="android:textColorPrimary">@color/yelliboi</item>
+        <item name="android:textColorPrimaryInverse">@color/yelliboi</item>
+        <item name="android:textColorSecondary">@color/yelliboi</item>
+        <item name="android:textColorSecondaryInverse">@color/yelliboi</item>
+    </style>
+
 </resources>

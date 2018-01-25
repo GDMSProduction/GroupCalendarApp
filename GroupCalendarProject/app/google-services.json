@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:137638625766:android:abdfdab11557c472",
         "android_client_info": {
-          "package_name": "com.SRJB.huliaaaa.groupcalendarproject"
+          "package_name": "com.example.huliaaaa.groupcalendarproject"
         }
       },
       "oauth_client": [
@@ -28,6 +28,50 @@
           "android_info": {
             "package_name": "com.example.huliaaaa.groupcalendarproject",
             "certificate_hash": "b4e2e0c01e7fd730032f0393bf756bcb6831777a"
+          }
+        },
+        {
+          "client_id": "137638625766-4762442gbkrqfh9dm38412p9fm4f522r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFMVzPATP5-s2hi-CeeON3ddGgQOBgxrU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137638625766-4762442gbkrqfh9dm38412p9fm4f522r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137638625766:android:5ea79e69d365dea3",
+        "android_client_info": {
+          "package_name": "com.SRJB.huliaaaa.groupcalendarproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137638625766-took1s4g4mbanr0u0e8tjvcntclngq1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SRJB.huliaaaa.groupcalendarproject",
+            "certificate_hash": "79f0dc087778847cf91dadd3ff78e94cc7101266"
           }
         },
         {

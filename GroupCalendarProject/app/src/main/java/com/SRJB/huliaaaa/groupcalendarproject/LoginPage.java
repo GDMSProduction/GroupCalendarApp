@@ -30,10 +30,39 @@ public class LoginPage extends AppCompatActivity {
     public Button log;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    FirebaseUser user;
+    String _currenttheme;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (MainMenu.currenttheme == null)
+        {
+            _currenttheme = "";
+        }
+        else
+        {
+            _currenttheme = MainMenu.currenttheme;
+        }
+
+        if (_currenttheme.contains("Green"))
+        {
+            setTheme(R.style.TestTheme1);
+        }
+        else if (_currenttheme.contains("Purple"))
+        {
+            setTheme(R.style.PurpDarkBoi);
+        }
+        else if (_currenttheme.contains("Yellow"))
+        {
+            setTheme(R.style.PurpDarkBoi_yellowpeeboi);
+        }
+        else
+        {
+            setTheme(R.style.TestTheme1);
+        }
+
         setContentView(R.layout.activity_login_page);
         txtEmailAddress = (EditText) findViewById(R.id.txtEmailLogin);
         txtPassword = (EditText) findViewById(R.id.txtPwd);
@@ -46,7 +75,7 @@ public class LoginPage extends AppCompatActivity {
         {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                 user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
                     Intent i = new Intent(LoginPage.this, MainMenu.class);
@@ -60,6 +89,7 @@ public class LoginPage extends AppCompatActivity {
                 // ...
             }
         };
+
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -165,6 +195,7 @@ public class LoginPage extends AppCompatActivity {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
     }
+
  // public void btnUserLogin_Click(View V)
  // {
  //
@@ -189,7 +220,17 @@ public class LoginPage extends AppCompatActivity {
  //                                        }
  //                                    }
  //   );
- // }
+ // } @Override
+ public void onBackPressed() {
+
+     if (user == null)
+     {
+         Intent nextpagge = new Intent(LoginPage.this,LoginPage.class);
+     }
+     else
+         super.onBackPressed();
+
+ }
 
    //public void btnRegistrationUser_Click(View V)
    //{
@@ -227,7 +268,7 @@ public class LoginPage extends AppCompatActivity {
      //         {
      //             Toast.makeText(LoginPage.this, "Registration successful", Toast.LENGTH_LONG).show();
      //         }
-     //         else
+     //         else//////
      //         {
      //             Log.e("ERROR", task.getException().toString());
      //             Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();

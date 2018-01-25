@@ -76,13 +76,29 @@ public class EditEvent extends AppCompatActivity {
     ArrayList<Integer> colors;
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
+    ArrayList<Object> descriptions;
+    String _currenttheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Green")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Purple")) {
+
+            setTheme(R.style.PurpDarkBoi);
+        }
+        else if (_currenttheme.contains("Yellow")) {
+
+            setTheme(R.style.PurpDarkBoi_yellowpeeboi);
+        }
+
         setContentView(R.layout.activity_edit_event);
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();
         timesinmillis = new ArrayList<Long>();
+        descriptions = new ArrayList<Object>();
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Event Creation");
 
@@ -173,6 +189,7 @@ public class EditEvent extends AppCompatActivity {
                         DESCRIPTION.setVisibility(View.VISIBLE);
                         noDes.setVisibility(View.VISIBLE);
                         pickTheColor.setVisibility(View.VISIBLE);
+
                         if (pickTheTime.isChecked())
                         {
                             Time.setVisibility(View.VISIBLE);
@@ -384,7 +401,36 @@ public class EditEvent extends AppCompatActivity {
                     }
                     else
                     {
-                        Date datee = new Date(DP.getYear()+1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                        if (blueBX.isChecked())
+                        {
+                            colorPicked = Color.BLUE;
+                        }
+                        else if (greenBX.isChecked())
+                        {
+                            colorPicked = Color.GREEN;
+                        }
+                        else if (redBX.isChecked())
+                        {
+                            colorPicked = Color.RED;
+                        }
+                        else if (cyanBX.isChecked())
+                        {
+                            colorPicked = Color.CYAN;
+                        }
+                        else if (magentaBX.isChecked())
+                        {
+                            colorPicked = Color.MAGENTA;
+                        }
+                        else
+                        {
+                            colorPicked = Color.BLACK;
+                        }
+
+                        String[] parts = Time.getText().toString().split(":");
+                        int hour = Integer.parseInt(parts[0]);
+                        int minutes = Integer.parseInt(parts[1]);
+
+                        Date datee = new Date(CalendarView.clickedDate.getYear(), CalendarView.clickedDate.getMonth(), CalendarView.clickedDate.getDate(), hour, minutes);
                         long millisecondsS = datee.getTime();
 
                         Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
@@ -408,17 +454,45 @@ public class EditEvent extends AppCompatActivity {
                 {
                     TITLE.setError(getString(R.string.error_field_required));
                 }
-                else if (pickTheTime.isChecked() == false)
-                {
-                    pickTheTime.setError(getString(R.string.error_field_required));
-                }
+                //else if (pickTheTime.isChecked() == false && !TextUtils.isEmpty(Time.getText().toString()))
+                //{
+                //    String[] parts = Time.getText().toString().split(":");
+                //    int hour = Integer.parseInt(parts[0]);
+                //    int minutes = Integer.parseInt(parts[1]);
+                //
+                //    java.util.Date datee = new Date(CalendarView.clickedDate.getYear(), CalendarView.clickedDate.getMonth(), CalendarView.clickedDate.getDate(), hour, minutes);
+                //    long millisecondsS = datee.getTime();
+//
+                //    if (noDes.isChecked() && TextUtils.isEmpty(DESCRIPTION.getText().toString())) {
+                //        if (blueBX.isChecked()) {
+                //            colorPicked = Color.BLUE;
+                //        } else if (greenBX.isChecked()) {
+                //            colorPicked = Color.GREEN;
+                //        } else if (redBX.isChecked()) {
+                //            colorPicked = Color.RED;
+                //        } else if (cyanBX.isChecked()) {
+                //            colorPicked = Color.CYAN;
+                //        } else if (magentaBX.isChecked()) {
+                //            colorPicked = Color.MAGENTA;
+                //        }
+//
+                //        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
+                //        ourEventArray.add(Ourevent);
+                //        event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                //        updateEventInfo();
+//
+                //    }
+                //}
                 else if (pickTheDate.isChecked()== false && TextUtils.isEmpty(Date.getText().toString()))
                 {
                     pickTheDate.setError(getString(R.string.error_field_required));
                 }
-                else if (pickTheDate.isChecked() == false && !TextUtils.isEmpty(Date.getText().toString()))
+                else if (pickTheDate.isChecked() == false && !TextUtils.isEmpty(Date.getText().toString()) && pickTheTime.isChecked() == false && !TextUtils.isEmpty(Time.getText().toString()))
                 {
-                    java.util.Date datee = new Date(CalendarView.clickedDate.getYear(), CalendarView.clickedDate.getMonth(), CalendarView.clickedDate.getDate(), TP.getHour(), TP.getMinute());
+                    String[] parts = Time.getText().toString().split(":");
+                    int hour = Integer.parseInt(parts[0]);
+                    int minutes = Integer.parseInt(parts[1]);
+                    java.util.Date datee = new Date(CalendarView.clickedDate.getYear(), CalendarView.clickedDate.getMonth(), CalendarView.clickedDate.getDate(), hour, minutes);
                     long millisecondsS = datee.getTime();
 
                     if (noDes.isChecked() && TextUtils.isEmpty(DESCRIPTION.getText().toString()))
@@ -444,7 +518,7 @@ public class EditEvent extends AppCompatActivity {
                             colorPicked = Color.MAGENTA;
                         }
 
-                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString());
+                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
                         ourEventArray.add(Ourevent);
                         event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
                         updateEventInfo();
@@ -452,6 +526,9 @@ public class EditEvent extends AppCompatActivity {
                     }
                     else
                     {
+                        java.util.Date dateee = new Date(CalendarView.clickedDate.getYear(), CalendarView.clickedDate.getMonth(), CalendarView.clickedDate.getDate(), TP.getHour(), TP.getMinute());
+                        long millisecondsSs = dateee.getTime();
+
                         if (blueBX.isChecked())
                         {
                             colorPicked = Color.BLUE;
@@ -493,9 +570,9 @@ public class EditEvent extends AppCompatActivity {
                             redBX.setChecked(false);
                         }
 
-                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                        Ourevent = new OurEvent(colorPicked, millisecondsSs, TITLE.getText().toString(), DESCRIPTION.getText().toString());
                         ourEventArray.add(Ourevent);
-                        event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
+                        event = new Event(colorPicked, millisecondsSs,TITLE.getText().toString() );
                         updateEventInfo();
 
                     }
@@ -510,12 +587,12 @@ public class EditEvent extends AppCompatActivity {
                 else
                 {
 
-                    java.util.Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                    Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
                     long millisecondsS = datee.getTime();
 
                     if (noDes.isChecked() && TextUtils.isEmpty(Date.getText().toString()))
                     {
-                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString());
+                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
                         ourEventArray.add(Ourevent);
                         event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
                         updateEventInfo();
@@ -585,10 +662,11 @@ public class EditEvent extends AppCompatActivity {
                             datas.add(child2.getValue());
                             if (child2.getValue().toString().contains(CalendarView.currenteventdata))
                             {
+
                                 eventtochange = currentevent;
                                 match = true;
                                 TITLE.setText(CalendarView.currenteventdata);
-                                noDes.setChecked(true);
+                                //noDes.setChecked(true);
                                 //pickTheDate.setChecked(true);
                                 pickTheColor.setChecked(true);
                                 colordisplay = colors.get(Integer.parseInt(currentevent));
@@ -598,6 +676,8 @@ public class EditEvent extends AppCompatActivity {
                                 String Year = String.valueOf(CalendarView.clickedDate.getYear() + 1900);
                                 Date.setText(Month+"/"+Day + "/" + Year);
                                 Date.setVisibility(View.VISIBLE);
+
+                                Time.setVisibility(View.VISIBLE);
 
 
                                 redBX.setVisibility(View.VISIBLE);
@@ -651,15 +731,35 @@ public class EditEvent extends AppCompatActivity {
                                     colorPicked = Color.BLACK;
                                 }
                             }
-                        } else if (child2.getKey().toString().contains("timeInMillis")) {
+                        }
+                        else if (child2.getKey().toString().contains("description"))
+                        {
+                            descriptions.add(child2.getValue());
+                            if (child2.getValue().toString().equals(""))
+                            {
+                                noDes.setChecked(true);
+                            }
+                            else
+                            {
+                                noDes.setChecked(false);
+                            }
+                            DESCRIPTION.setText(child2.getValue().toString());
+                        }
+                        else if (child2.getKey().toString().contains("timeInMillis"))
+                        {
                             timesinmillis.add(child2.getValue(Long.class));
+                            Date date = new Date(child2.getValue((Long.class)));
+
+                            Time.setText(date.getHours() + ":" + date.getMinutes());
+
+
                         }
 
                     }
                     ourEventArray.clear();
                     for (int x=0; x<colors.size(); x++) {
 
-                        NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x));
+                        NewEvent = new OurEvent(colors.get(x), timesinmillis.get(x), datas.get(x), descriptions.get(x));
                         ourEventArray.add(NewEvent);
                     }
 
@@ -725,5 +825,5 @@ public class EditEvent extends AppCompatActivity {
     }
 
 
-    }
+}
 

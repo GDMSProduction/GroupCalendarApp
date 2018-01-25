@@ -47,6 +47,10 @@ public class CreateEvent extends AppCompatActivity {
     CheckBox blueBX;
     int colorPicked;
 
+    RadioButton daily;
+    RadioButton weekly;
+    RadioButton monthly;
+
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     boolean exists;
@@ -65,10 +69,23 @@ public class CreateEvent extends AppCompatActivity {
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
     ArrayList<Object> description;
-
+    String _currenttheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Green")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Purple")) {
+
+            setTheme(R.style.PurpDarkBoi);
+        }
+        else if (_currenttheme.contains("Yellow")) {
+
+            setTheme(R.style.PurpDarkBoi_yellowpeeboi);
+        }
+
         setContentView(R.layout.activity_create_event);
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();
@@ -84,6 +101,11 @@ public class CreateEvent extends AppCompatActivity {
         pickTheDate = (RadioButton) findViewById(R.id.pickdate_btn);
         pickTheTime = (RadioButton) findViewById(R.id.picktime_btn);
         pickTheColor = (RadioButton) findViewById(R.id.pickColorBtn);
+
+        daily = (RadioButton) findViewById(R.id.repeatDaily);
+        weekly = (RadioButton) findViewById(R.id.repeatWeekly);
+        monthly = (RadioButton) findViewById(R.id.repeatMonthly);
+
         DP = (DatePicker ) findViewById(R.id.datePicker2);
         TP = (TimePicker) findViewById(R.id.timePicker2);
         ok1 = (Button) findViewById(R.id.ok1);
@@ -146,6 +168,9 @@ public class CreateEvent extends AppCompatActivity {
                 pickTheColor.setVisibility(View.INVISIBLE);
                 Time.setVisibility(View.INVISIBLE);
                 noDes.setVisibility(View.INVISIBLE);
+                daily.setVisibility(View.INVISIBLE);
+                weekly.setVisibility(View.INVISIBLE);
+                monthly.setVisibility(View.INVISIBLE);
 
                 ok1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -160,6 +185,10 @@ public class CreateEvent extends AppCompatActivity {
                         DESCRIPTION.setVisibility(View.VISIBLE);
                         noDes.setVisibility(View.VISIBLE);
                         pickTheColor.setVisibility(View.VISIBLE);
+                        daily.setVisibility(View.VISIBLE);
+                        weekly.setVisibility(View.VISIBLE);
+                        monthly.setVisibility(View.VISIBLE);
+
                         if (pickTheTime.isChecked())
                         {
                             Time.setVisibility(View.VISIBLE);
@@ -203,6 +232,9 @@ public class CreateEvent extends AppCompatActivity {
                 blueBX.setVisibility(View.INVISIBLE);
                 noDes.setVisibility(View.INVISIBLE);
                 pickTheColor.setVisibility(View.INVISIBLE);
+                daily.setVisibility(View.INVISIBLE);
+                weekly.setVisibility(View.INVISIBLE);
+                monthly.setVisibility(View.INVISIBLE);
 
                 ok2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -217,6 +249,9 @@ public class CreateEvent extends AppCompatActivity {
                         TP.setVisibility(View.INVISIBLE);
                         noDes.setVisibility(View.VISIBLE);
                         pickTheColor.setVisibility(View.VISIBLE);
+                        daily.setVisibility(View.VISIBLE);
+                        weekly.setVisibility(View.VISIBLE);
+                        monthly.setVisibility(View.VISIBLE);
 
 
                         if (pickTheDate.isChecked())
@@ -334,6 +369,33 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
 
+        daily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                weekly.setChecked(false);
+                monthly.setChecked(false);
+            }
+        });
+
+        weekly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                daily.setChecked(false);
+                monthly.setChecked(false);
+            }
+        });
+
+        monthly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                weekly.setChecked(false);
+                daily.setChecked(false);
+            }
+        });
+
         addevent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -350,20 +412,84 @@ public class CreateEvent extends AppCompatActivity {
                 }
                 else ///// allows for adding events with descriptions...
                 {
-                    Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
-                    long millisecondsS = datee.getTime();
+                    if (daily.isChecked())
+                    {
+                        for (int i = 0; i <= 31; i++)
+                        {
+                            Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                            long millisecondsS = datee.getTime();
 
-                    Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
-                    ourEventArray.add(Ourevent);
-                    event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
-                    saveEventInfo();
+                            Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                            ourEventArray.add(Ourevent);
+                            event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                            saveEventInfo();
+                        }
 
-                    DESCRIPTION.setText("");
-                    pickTheTime.setChecked(false);
-                    pickTheDate.setChecked(false);
-                    TITLE.setText("");
+                        DESCRIPTION.setText("");
+                        pickTheTime.setChecked(false);
+                        pickTheDate.setChecked(false);
+                        TITLE.setText("");
 
-                    finish();
+                        finish();
+                    }
+                    else if (weekly.isChecked())
+                    {
+                        for (int i = 0; i <= 28; i+=7)
+                        {
+                            Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                            long millisecondsS = datee.getTime();
+
+                            Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                            ourEventArray.add(Ourevent);
+                            event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                            saveEventInfo();
+                        }
+
+                        DESCRIPTION.setText("");
+                        pickTheTime.setChecked(false);
+                        pickTheDate.setChecked(false);
+                        TITLE.setText("");
+
+                        finish();
+                    }
+                    else if (monthly.isChecked())
+                    {
+                        for (int i = 0; i <= 12; i++)
+                        {
+                            Date datee = new Date(DP.getYear() - 1900, DP.getMonth() + i, DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                            long millisecondsS = datee.getTime();
+
+                            Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                            ourEventArray.add(Ourevent);
+                            event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                            saveEventInfo();
+                        }
+
+                        DESCRIPTION.setText("");
+                        pickTheTime.setChecked(false);
+                        pickTheDate.setChecked(false);
+                        TITLE.setText("");
+
+                        finish();
+                    }
+                    else {
+
+
+                        Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                        long millisecondsS = datee.getTime();
+
+                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                        ourEventArray.add(Ourevent);
+                        event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                        saveEventInfo();
+
+                        DESCRIPTION.setText("");
+                        pickTheTime.setChecked(false);
+                        pickTheDate.setChecked(false);
+                        TITLE.setText("");
+
+                        finish();
+                    }
                 }
                 }
                 else if (pickTheColor.isChecked() == false)
@@ -385,28 +511,175 @@ public class CreateEvent extends AppCompatActivity {
                 else
                 {
 
-                    Date datee = new Date(DP.getYear()-1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
-                    long millisecondsS = datee.getTime();
-
                     if (noDes.isChecked())
                     {
-                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString());
-                        ourEventArray.add(Ourevent);
-                        event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
-                        saveEventInfo();
+                        if (daily.isChecked())
+                        {
+                            for (int i = 0; i <= 31; i++)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else if (weekly.isChecked())
+                        {
+                            for (int i = 0; i <= 28; i+=7)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else if (monthly.isChecked())
+                        {
+                            for (int i = 0; i <= 12; i++)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth() + i, DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), "");
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else
+                        {
+
+
+                            Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                            long millisecondsS = datee.getTime();
+
+                            Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                            ourEventArray.add(Ourevent);
+                            event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                            saveEventInfo();
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+
                     }
                     else
                     {
-                        Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
-                        ourEventArray.add(Ourevent);
-                        event = new Event(colorPicked, millisecondsS,TITLE.getText().toString() );
-                        saveEventInfo();
+                        if (daily.isChecked())
+                        {
+                            for (int i = 0; i <= 31; i++)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else if (weekly.isChecked())
+                        {
+                            for (int i = 0; i <= 28; i+=7)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth() + i, TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else if (monthly.isChecked())
+                        {
+                            for (int i = 0; i <= 12; i++)
+                            {
+                                Date datee = new Date(DP.getYear() - 1900, DP.getMonth() + i, DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                                long millisecondsS = datee.getTime();
+
+                                Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                                ourEventArray.add(Ourevent);
+                                event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                                saveEventInfo();
+                            }
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+                        else {
+
+
+                            Date datee = new Date(DP.getYear() - 1900, DP.getMonth(), DP.getDayOfMonth(), TP.getHour(), TP.getMinute());
+                            long millisecondsS = datee.getTime();
+
+                            Ourevent = new OurEvent(colorPicked, millisecondsS, TITLE.getText().toString(), DESCRIPTION.getText().toString());
+                            ourEventArray.add(Ourevent);
+                            event = new Event(colorPicked, millisecondsS, TITLE.getText().toString());
+                            saveEventInfo();
+
+                            DESCRIPTION.setText("");
+                            pickTheTime.setChecked(false);
+                            pickTheDate.setChecked(false);
+                            TITLE.setText("");
+
+                            finish();
+                        }
+
                     }
                     //compactCalendar.addEvent(event);
 
                     //Intent intent = new Intent(CreateEvent.this, CalendarView.class);
                     //startActivity(intent);
-
 
 
                     DESCRIPTION.setText("");
@@ -415,6 +688,7 @@ public class CreateEvent extends AppCompatActivity {
                     TITLE.setText("");
 
                     finish();
+
                 }
 
             }
@@ -466,9 +740,9 @@ public class CreateEvent extends AppCompatActivity {
                     {
                         timesinmillis.add(child2.getValue(Long.class));
                     }
-                    else if (child2.getKey().toString().contains("description") && child2.exists())
+                    else if (child2.getKey().toString().contains("description"))
                     {
-                        //description.add(child2.getValue());
+                        description.add(child2.getValue());
                     }
 
                 }
@@ -520,7 +794,7 @@ public class CreateEvent extends AppCompatActivity {
         //{
         //    databaseReference.child("users").child(_email).child("Events").child(currentcal).child(Integer.toString(i)).setValue(ourEventArray.get(i));
         //}
-        Toast.makeText(this, "Event Saved...", Toast.LENGTH_SHORT).show();
+
     }
 
 }

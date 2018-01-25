@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
@@ -95,7 +96,11 @@ public class CalendarView extends AppCompatActivity
     ArrayList<Integer> colors;
     ArrayList<Object> datas;
     ArrayList<Long> timesinmillis;
+
     public static Date clickedDate;
+
+    String _currenttheme;
+
 
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
     Date fat;
@@ -103,6 +108,19 @@ public class CalendarView extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        _currenttheme = MainMenu.currenttheme;
+        if (_currenttheme.contains("Green")) {
+
+            setTheme(R.style.TestTheme1);
+        } else if (_currenttheme.contains("Purple")) {
+
+            setTheme(R.style.PurpDarkBoi);
+        }
+        else if (_currenttheme.contains("Yellow")) {
+
+            setTheme(R.style.PurpDarkBoi_yellowpeeboi);
+        }
+
         setContentView(R.layout.activity_calendar_view);
         colors = new ArrayList<Integer>();
         datas = new ArrayList<Object>();
